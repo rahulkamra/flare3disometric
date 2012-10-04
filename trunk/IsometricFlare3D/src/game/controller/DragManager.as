@@ -29,15 +29,18 @@ package game.controller
 			var gridPoint:Array = IsometricController.planeToGrid(localPoint);
 			var planeCoordinates:Vector3D = IsometricController.gridToPlane(gridPoint[0],gridPoint[1]);
 			_onMouse.setVector(planeCoordinates);	
-			IsometricGame.addObject(_onMouse,true);
+			
 			
 		}
 		
 		protected static function _mouseDown(event:MouseEvent3D):void
 		{
-			IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);
-			IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
-			
+			if(IsometricGame.canPlace(_onMouse)){
+				IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);
+				IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
+				IsometricGame.addObject(_onMouse,true);
+				_onMouse = null;
+			}
 			
 		}
 	}

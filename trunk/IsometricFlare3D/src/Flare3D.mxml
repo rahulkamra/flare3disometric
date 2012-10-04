@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   applicationComplete="application1_applicationCompleteHandler(event)" backgroundAlpha="0">
+	<fx:Script>
+		<![CDATA[
+			import flare.system.Input3D;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.messaging.messages.ISmallMessage;
+			
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				trace("asas");
+				Input3D.enableEventPhase = false;
+				test = new Test30_Flare3DLoader2(stage); 
+				stage.addChild(test); 
+				
+			}
+			
+			private var _isMouseDown:Boolean = false;
+			
+			private var startX:Number = 0;
+			private var startY:Number = 0;
+			
+			private var test:Test30_Flare3DLoader2;
+			
+			protected function _mouseDown(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				_isMouseDown = true;
+				
+				startX = stage.mouseX;
+				startY = stage.mouseY;
+				
+			}
+			
+			protected function _mouseup(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				_isMouseDown = false;
+				
+				
+			}
+			
+			protected function _mouseMove(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(_isMouseDown == false)return;
+				var changeX:Number = startX - stage.mouseX;
+				var changeY:Number = startY - stage.mouseY;
+				
+				startX = stage.mouseX;
+				startY = stage.mouseY;
+				
+				test.model.rotateY(changeX);
+				test.model.rotateZ(changeY);
+			}
+			
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				test.load(cmb.selectedItem.url);
+				var array:Array = cmb.selectedItem.animation;
+				cmbAnim.dataProvider = new ArrayCollection(array);
+					
+			}
+			
+			public function play():void{
+				if(cmbAnim.selectedItem == "" || cmbAnim.selectedItem == null){
+					return;
+				}
+				var animation:String = cmbAnim.selectedItem;
+				test.loadAndPlay(animation);
+					
+			}
+			
+			
+			
+			public function sync():void{
+				test.scene.camera.lookAt(hslLookX.value,hslLookY.value,hslLookZ.value);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Button x="9" y="132" label="Load" click="button1_clickHandler(event)"/>
+	<s:Button x="172" y="132" label="Play" click="play()"/>
+	<s:HSlider id="hslCameraX" x="84" y="261" change="sync()" maximum="1000"/>
+	<s:HSlider id="hslCameraZ" x="85" y="310" change="sync()" maximum="1000"/>
+	<s:HSlider id="hslCameraY" x="84" y="285" change="sync()" maximum="1000"/>
+	
+	<s:HSlider id="hslLookX" x="85" y="390" change="sync()" maximum="1000" minimum="1"/>
+	<s:HSlider id="hslLookY" x="85" y="416" change="sync()" maximum="1000" minimum="1"/>
+	<s:HSlider id="hslLookZ" x="85" y="444" change="sync()" maximum="1000" minimum="1"/>
+	
+	<s:RichText x="26" y="441" text="Look Z"/>
+	<s:RichText x="26" y="413" text="Look Y"/>
+	<s:RichText x="26" y="260" text="Camer X"/>
+	<s:RichText x="26" y="387" text="Look X"/>
+	<s:RichText x="26" y="308" text="Camera Z"/>
+	<s:RichText x="26" y="284" text="Camera Y"/>
+	<s:ComboBox x="10" y="97" id="cmb" dataProvider="{GetData.getData()}" labelField="name"/>
+	<s:ComboBox id="cmbAnim" x="168" y="97" width="290" labelField="name"/>
+</s:Application>

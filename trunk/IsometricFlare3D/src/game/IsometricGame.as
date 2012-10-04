@@ -1,6 +1,7 @@
 package game
 {
 	import com.electron.engine.debug.log;
+	import com.electron.engine.debug.log2DArray;
 	import com.electron.engine.util.Utils;
 	
 	import flare.basic.Scene3D;
@@ -42,7 +43,7 @@ package game
 		
 		private var debugPlane:Plane;
 		
-		public static var cellSize:int = 32;;
+		public static var cellSize:int = 16;;
 		public static var rows:int;
 		public static var cols:int;
 		
@@ -104,9 +105,9 @@ package game
 			isometricGrid = new IsometricGrid();
 			wrapperPlane.addChild(isometricGrid);
 			
-			cols = 10;//bitmap.width/cellSize;
-			rows= 10 ;//  bitmap.height/cellSize;
-			isometricGrid.init(rows,cols,32);
+			cols = bitmap.width/cellSize;
+			rows= bitmap.height/cellSize;
+			isometricGrid.init(rows,cols,cellSize);
 			isometricGrid.z = plane.z-1;
 			
 			initGrid();
@@ -145,8 +146,27 @@ package game
 			plane.addChild(object3D);
 			
 			if(populateValue){
-				//trace(gridEntity.row,gridEntity.col);
+				
+				for(var row:int = 0 ; row < gridEntity.gridEntityVO.rows ; row++){
+					for(var col:int = 0 ; col < gridEntity.gridEntityVO.cols ; col++){
+						gridArray[gridEntity.row+row][gridEntity.col+col] = 1
+					}
+				}
 			}
+			
+			_log2DArray(gridArray);
+		}
+		
+		public static function canPlace(gridEntity:GridEntity):Boolean{
+			
+			for(var row:int = 0 ; row < gridEntity.gridEntityVO.rows ; row++){
+				for(var col:int = 0 ; col < gridEntity.gridEntityVO.cols ; col++){
+					if(gridArray[gridEntity.row+row][gridEntity.col+col] == 1){
+						return false;
+					}
+				}
+			}
+			return true;
 		}
 		
 	}
