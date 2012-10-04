@@ -1,6 +1,7 @@
 package game
 {
 	import com.electron.engine.debug.log;
+	import com.electron.engine.util.Utils;
 	
 	import flare.basic.Scene3D;
 	import flare.basic.Viewer3D;
@@ -8,6 +9,7 @@ package game
 	import flare.collisions.RayCollision;
 	import flare.core.Camera3D;
 	import flare.core.Lines3D;
+	import flare.core.Mesh3D;
 	import flare.core.Pivot3D;
 	import flare.core.Texture3D;
 	import flare.events.MouseEvent3D;
@@ -22,6 +24,8 @@ package game
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
+	
+	import game.entity.GridEntity;
 	
 	public class IsometricGame extends Sprite
 	{
@@ -38,7 +42,13 @@ package game
 		
 		private var debugPlane:Plane;
 		
-		private var cellSize:int;
+		public static var cellSize:int = 32;;
+		public static var rows:int;
+		public static var cols:int;
+		
+		private static var gridArray:Array;
+
+		public static var isometricGrid:IsometricGrid;
 		
 		
 		
@@ -91,17 +101,30 @@ package game
 		{
 			// TODO Auto Generated method stub
 			
-			var isometricGrid:IsometricGrid = new IsometricGrid();
+			isometricGrid = new IsometricGrid();
 			wrapperPlane.addChild(isometricGrid);
-			isometricGrid.init(bitmap.width/32,bitmap.height/32,32);
-			isometricGrid.z = plane.z-1
+			
+			cols = 10;//bitmap.width/cellSize;
+			rows= 10 ;//  bitmap.height/cellSize;
+			isometricGrid.init(rows,cols,32);
+			isometricGrid.z = plane.z-1;
+			
+			initGrid();
+			
+				
+				
 		}
 		
-		
-		public static function addObject(object3D:Pivot3D):void
+		private function initGrid():void
 		{
 			// TODO Auto Generated method stub
-			
+			gridArray = Utils.Instance.create2DArray(rows,cols,0);
+		}		
+		
+		public static function addObject(gridEntity:GridEntity,populateValue:Boolean = false):void
+		{
+			// TODO Auto Generated method stub
+			var object3D:Pivot3D = gridEntity.pivot3D;
 			
 			var ray:RayCollision = new RayCollision();
 			ray.addCollisionWith(wrapperPlane,false);
@@ -118,8 +141,12 @@ package game
 				// Align the astronaut container to the collision normal.
 				object3D.setNormalOrientation( info.normal, 0.05 );
 			}
+			//object3D.setPosition(object3D.x,object3D.y,object3D.z+1); 
+			plane.addChild(object3D);
 			
-			wrapperPlane.addChild(object3D);
+			if(populateValue){
+				//trace(gridEntity.row,gridEntity.col);
+			}
 		}
 		
 	}
