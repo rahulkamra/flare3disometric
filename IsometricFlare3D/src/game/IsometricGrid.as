@@ -22,14 +22,12 @@ package game
 			this.cols = cols;
 			this.cellSize = cellSize;
 			make2DGrid();
-			
+			mouseEnabled = false;
 		}
 		
 		private function make2DGrid():void{
 			var startX:int = 0;
 			var startY:int = 0;
-			
-			cellSize = 10;
 			
 			
 			for(var row:int  = 0 ;row<= rows ; row++ ){
