@@ -41,13 +41,6 @@
 			}
 			
 			
-			protected function addBuilding(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				load();
-			}
-			
-			
 			public var model:Pivot3D;
 			private var mesh:Mesh3D;
 			private var anim1:Flare3DLoader;
@@ -55,20 +48,34 @@
 			private var kitchenWoodhouseUrl:String = "assets/house/bldg_general_countrykitchen_wood_t3-13.f3d"
 
 			private var gridEntity:GridEntity;
-			public function load():void{
-				if(model){
-					model.parent.removeChild(model);
-				}
-				addKitchenWoodHouse();
-			}
 			
 			public function addKitchenWoodHouse():void{
 				
 				gridEntity = new GridEntity(GridEntityMapping.KITCHEN_WOOD_HOUSE);
 				IsometricGame.addObject(gridEntity);
+				gridEntity.setRowPositionByGrid(0,0);
 				DragManager.addDrag(gridEntity);
 				
-				trace(IsometricController.gridToPlane(1,2));
+			}
+			
+			public function addMarketStall():void{
+				
+				gridEntity = new GridEntity(GridEntityMapping.MARKET_STALL);
+				IsometricGame.addObject(gridEntity);
+				gridEntity.setRowPositionByGrid(0,0);
+					
+			DragManager.addDrag(gridEntity);
+				
+			}
+			
+			public function addFeedMaker():void{
+				
+				gridEntity = new GridEntity(GridEntityMapping.FEED_MAKER);
+				IsometricGame.addObject(gridEntity);
+				gridEntity.setRowPositionByGrid(0,0);
+					
+				DragManager.addDrag(gridEntity);
+				
 			}
 			
 			
@@ -77,6 +84,8 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<s:Button x="33" y="322" label="Building" click="addBuilding(event)"/>
+	<s:Button x="33" y="322" label="KitchenWood" click="addKitchenWoodHouse()"/>
+	<s:Button x="33" y="363" label="MarketStall" click="addMarketStall()"/>
+	<s:Button x="33" y="396" label="FeedMaker" click="addFeedMaker()"/>
 	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
 </s:Application>
