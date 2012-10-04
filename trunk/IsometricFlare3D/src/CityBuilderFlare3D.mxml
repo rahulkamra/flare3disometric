@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" backgroundAlpha="0" applicationComplete="application1_applicationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import flare.basic.Viewer3D;
+			import flare.core.Lines3D;
+			import flare.core.Mesh3D;
+			import flare.core.Surface3D;
+			import flare.primitives.Cube;
+			import flare.system.Input3D;
+			
+			import game.IsometricGame;
+			import game.IsometricGameNew;
+			
+			import mx.events.FlexEvent;
+
+			private var test:IsometricGameNew;
+			
+			[Embed(source='Map.jpg')]
+			public static var Map:Class;
+			
+			
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				Input3D.enableEventPhase = false;
+				test = new IsometricGameNew(stage);
+				stage.addChild(test);
+				
+				
+				/* var cubes:Cube = new Cube();
+				
+				var total:int = 256 * 256;
+				for ( var i:int = 0; i < total; i++ )
+				{
+					var x:Number = Math.random() * 1000 - 500;
+					var y:Number = Math.random() * 1000 - 500;
+					var z:Number = Math.random() * 1000 - 500;
+					var color:Number = Math.random() * 0.99 + 0.01;				
+					cubes.x = x;
+					cubes.y = y;
+					cubes.z = z;
+					
+						
+					
+				}
+				
+				IsoBuilder.scene.addChild( cubes );
+				
+				
+				var mesh:Mesh3D  = new Mesh3D();
+				IsoBuilder.scene.addChild(mesh);
+				
+				
+				var line:Lines3D = new Lines3D();
+				line.moveTo(0,0,0);
+				line.setScale(100,100,100);
+				line.lineTo(150,200,100);
+				line.upload(mesh.scene);
+				line.draw(); */
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
+</s:Application>
