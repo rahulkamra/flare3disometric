@@ -15,6 +15,7 @@
   </compiler>
   <applications>
     <application path="CityBuilderFlare3D.mxml"/>
+    <application path="RegistrationPoint.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

@@ -5,18 +5,22 @@
 	<fx:Script>
 		<![CDATA[
 			import flare.basic.Viewer3D;
+			import flare.collisions.RayCollision;
 			import flare.core.Lines3D;
 			import flare.core.Mesh3D;
+			import flare.core.Pivot3D;
 			import flare.core.Surface3D;
+			import flare.loaders.Flare3DLoader;
 			import flare.primitives.Cube;
 			import flare.system.Input3D;
 			
 			import game.IsometricGame;
-			import game.IsometricGameNew;
+			import game.entity.GridEntity;
+			import game.settings.GridEntityMapping;
 			
 			import mx.events.FlexEvent;
 
-			private var test:IsometricGameNew;
+			private var test:game.IsometricGame;
 			
 			[Embed(source='Map.jpg')]
 			public static var Map:Class;
@@ -25,48 +29,48 @@
 			protected function application1_applicationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
+				
 				Input3D.enableEventPhase = false;
-				test = new IsometricGameNew(stage);
+				test = new game.IsometricGame(stage);
 				stage.addChild(test);
-				
-				
-				/* var cubes:Cube = new Cube();
-				
-				var total:int = 256 * 256;
-				for ( var i:int = 0; i < total; i++ )
-				{
-					var x:Number = Math.random() * 1000 - 500;
-					var y:Number = Math.random() * 1000 - 500;
-					var z:Number = Math.random() * 1000 - 500;
-					var color:Number = Math.random() * 0.99 + 0.01;				
-					cubes.x = x;
-					cubes.y = y;
-					cubes.z = z;
-					
-						
-					
-				}
-				
-				IsoBuilder.scene.addChild( cubes );
-				
-				
-				var mesh:Mesh3D  = new Mesh3D();
-				IsoBuilder.scene.addChild(mesh);
-				
-				
-				var line:Lines3D = new Lines3D();
-				line.moveTo(0,0,0);
-				line.setScale(100,100,100);
-				line.lineTo(150,200,100);
-				line.upload(mesh.scene);
-				line.draw(); */
 			}
 			
+			
+			protected function addBuilding(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				load();
+			}
+			
+			
+			public var model:Pivot3D;
+			private var mesh:Mesh3D;
+			private var anim1:Flare3DLoader;
+			
+			private var kitchenWoodhouseUrl:String = "assets/house/bldg_general_countrykitchen_wood_t3-13.f3d"
+			public function load():void{
+				if(model){
+					model.parent.removeChild(model);
+				}
+				addKitchenWoodHouse();
+			}
+			
+			public function addKitchenWoodHouse():void{
+				
+				var gridEntity:GridEntity = new GridEntity(GridEntityMapping.KITCHEN_WOOD_HOUSE);
+				IsometricGame.addObject(gridEntity.mesh3D);
+				
+			}
+			
+			
+
+
 			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<s:Button x="33" y="322" label="Building" click="addBuilding(event)"/>
 	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
 </s:Application>
