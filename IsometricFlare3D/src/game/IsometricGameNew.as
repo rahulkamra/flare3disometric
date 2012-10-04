@@ -60,11 +60,6 @@ package game
 		protected function _enterFrame(event:Event):void
 		{
 			if(scene){
-			/*	trace(scene.camera.x  , "x");
-				trace(scene.camera.y , "y");
-				trace(scene.camera.z , "z");
-				
-				trace(scene.camera.getRotation());*/
 			}
 		}		
 		
@@ -72,7 +67,6 @@ package game
 			
 			wrapperPlane = new Plane();
 			debugPlane = new Plane();
-			
 			
 			bitmap = new CityBuilderFlare3D.Map()
 			var texture:Texture3D = new Texture3D(bitmap.bitmapData);
@@ -83,11 +77,16 @@ package game
 			
 			plane = new Plane( "sourcePlane", 2048, 2048, 1, material );
 			
+			var isometricGrid:IsometricGrid = new IsometricGrid();
+			wrapperPlane.addChild(isometricGrid);
+			isometricGrid.init(100,100,32);
+			
+			/*wrapperPlane.addChild(debugPlane);
+			make2DGrid();*/
+			
 			wrapperPlane.addChild(plane);
-			wrapperPlane.addChild(debugPlane);
-			debugPlane.z = plane.z-1
+			isometricGrid.z = plane.z-1
 			scene.addChild(wrapperPlane);
-			make2DGrid();
 			
 			
 			plane.addEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);
@@ -144,43 +143,6 @@ package game
 		}		
 		
 		
-		private function make2DGrid():void{
-			var startX:int = 0;
-			var startY:int = 0;
-			
-			cellSize = 10;
-			
-			var maxRows:int  = 2048/cellSize;
-			var maxCols:int  = 2048/cellSize;
-			
-			
-			for(var row:int  = 0 ;row<= maxRows ; row++ ){
-				createLine(0,row*cellSize,maxRows*cellSize,row*cellSize)
-			}
-			
-			for(var col:int  = 0 ;col<= maxCols ; col++ ){
-				createLine(col*cellSize,0,col*cellSize,maxCols*cellSize);				
-			}
-			
-			
-		}
-		
-		private function createLine(xFrom:int , yFrom:int , xTo:int , yTo:int):void{
-			var line:Lines3D = new Lines3D();
-			var point:Vector3D = plane.getDown(false);
-			
-			
-			var startPointX:int = point.x - 1024;
-			var startPointY:int = point.y - 1024;
-			
-			line.moveTo(startPointX+xFrom,startPointY+yFrom,point.z);
-			line.lineTo(startPointX+xTo,startPointY+yTo,point.z);
-			
-			debugPlane.addChild(line);
-		}
-		
-		
-		
 		
 		protected function _mouseWheel(event:MouseEvent):void
 		{
@@ -200,5 +162,6 @@ package game
 			}	
 			
 		}
+		
 	}
 }
