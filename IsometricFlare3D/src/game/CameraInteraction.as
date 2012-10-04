@@ -69,7 +69,6 @@ package game
 		
 		protected static function _mouseDown(event:MouseEvent3D):void
 		{
-			trace("zzz");
 			isMouseDown = true;
 			regX = event.info.point.x;
 			regY = event.info.point.y;
