@@ -4,6 +4,8 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" backgroundAlpha="0" applicationComplete="application1_applicationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
+			import com.electron.engine.debug.Stats;
+			
 			import flare.basic.Viewer3D;
 			import flare.collisions.RayCollision;
 			import flare.core.Lines3D;
@@ -14,7 +16,9 @@
 			import flare.primitives.Cube;
 			import flare.system.Input3D;
 			
+			import game.IsometricController;
 			import game.IsometricGame;
+			import game.controller.DragManager;
 			import game.entity.GridEntity;
 			import game.settings.GridEntityMapping;
 			
@@ -29,7 +33,8 @@
 			protected function application1_applicationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				
+				stage.addChild( new Stats() );
+				stage.frameRate  = 60;
 				Input3D.enableEventPhase = false;
 				test = new game.IsometricGame(stage);
 				stage.addChild(test);
@@ -48,6 +53,8 @@
 			private var anim1:Flare3DLoader;
 			
 			private var kitchenWoodhouseUrl:String = "assets/house/bldg_general_countrykitchen_wood_t3-13.f3d"
+
+			private var gridEntity:GridEntity;
 			public function load():void{
 				if(model){
 					model.parent.removeChild(model);
@@ -57,14 +64,13 @@
 			
 			public function addKitchenWoodHouse():void{
 				
-				var gridEntity:GridEntity = new GridEntity(GridEntityMapping.KITCHEN_WOOD_HOUSE);
-				IsometricGame.addObject(gridEntity.mesh3D);
+				gridEntity = new GridEntity(GridEntityMapping.KITCHEN_WOOD_HOUSE);
+				IsometricGame.addObject(gridEntity);
+				DragManager.addDrag(gridEntity);
 				
+				trace(IsometricController.gridToPlane(1,2));
 			}
 			
-			
-
-
 			
 		]]>
 	</fx:Script>

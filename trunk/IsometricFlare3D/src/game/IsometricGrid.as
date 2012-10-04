@@ -53,5 +53,10 @@ package game
 			
 			addChild(line);
 		}
-	}
+		
+		
+/*		public function getGridData(vector3D:Vector3D):Array{
+			return[Math.floor(vector3D.x/cellSize),Math.floor(vector3D.y/cellSize)];
+		}
+*/	}
 }

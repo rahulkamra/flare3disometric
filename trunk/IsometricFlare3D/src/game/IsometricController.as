@@ -8,6 +8,7 @@ package game
 	import flare.core.Camera3D;
 	import flare.core.Pivot3D;
 	
+	import flash.geom.Point;
 	import flash.geom.Vector3D;
 
 	public class IsometricController
@@ -45,6 +46,21 @@ package game
 			}
 			
 			return null;
+		}
+		
+		public static function gridToPlane(row:int,col:int):Vector3D{
+			var cellSize:int = IsometricGame.cellSize;
+			var x:int = col*cellSize - IsometricGame.plane.width/2;
+			var y:int = row*cellSize - IsometricGame.plane.height/2;
+			var vector3D:Vector3D = new Vector3D(x,y,IsometricGame.plane.z)
+			return vector3D
+		}
+		
+		
+		public static function planeToGrid(vector3D:Vector3D):Array{
+			var col:int = Math.floor((vector3D.x+IsometricGame.plane.width/2)/IsometricGame.cellSize);
+			var row:int = Math.floor((vector3D.y+IsometricGame.plane.height/2)/IsometricGame.cellSize);
+			return[row,col];
 		}
 		
 	}
