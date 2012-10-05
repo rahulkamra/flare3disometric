@@ -27,6 +27,9 @@ package game
 	import flash.geom.Vector3D;
 	
 	import game.entity.GridEntity;
+	import game.pathfinding.Grid;
+	import game.pathfinding.Node;
+	import game.pathfinding.Tile;
 	
 	public class IsometricGame extends Sprite
 	{
@@ -47,7 +50,8 @@ package game
 		public static var rows:int;
 		public static var cols:int;
 		
-		private static var gridArray:Array;
+		public static var gridArray:Array;
+		public var aStartGrid:Grid;
 
 		public static var isometricGrid:IsometricGrid;
 		
@@ -112,15 +116,19 @@ package game
 			
 			initGrid();
 			
-				
-				
 		}
 		
 		private function initGrid():void
 		{
 			// TODO Auto Generated method stub
 			gridArray = Utils.Instance.create2DArray(rows,cols,0);
-		}		
+		}
+		
+		public function createPathFindingGrid():void{
+			aStartGrid = new Grid(cols,rows);
+			//add unwalkable areas'
+		}
+		
 		
 		public static function addObject(gridEntity:GridEntity,populateValue:Boolean = false):void
 		{
@@ -168,6 +176,23 @@ package game
 			}
 			return true;
 		}
+		
+		
+		
+		public function fillPathfindingGrid(gridEntity:GridEntity,tile:Tile):void{
+			for(var count:int =0 ; count < gridEntity.gridEntityVO.rows ;count++){
+				for(var innterCount:int = 0 ; innterCount < gridEntity.gridEntityVO.cols ;innterCount++){
+					var node:Node = getNodeAt(tile.row+count,tile.col+innterCount);
+					node.walkable = gridEntity.walkable;
+					node.costMultiplier = gridEntity.tileWeightage;
+				}	
+			}
+		}
+		
+		public function getNodeAt(row:int,col:int):Node{
+			return aStartGrid.getNode(row,col)
+		}
+		
 		
 	}
 }

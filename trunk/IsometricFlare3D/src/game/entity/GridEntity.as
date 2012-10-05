@@ -8,6 +8,7 @@ package game.entity
 	import game.IsometricController;
 	import game.IsometricGame;
 	import game.model.GridEntityVO;
+	import game.pathfinding.Tile;
 	
 	public class GridEntity 
 	{
@@ -38,6 +39,13 @@ package game.entity
 		public function getGridY():int{
 			return pivot3D.y-gridEntityVO.regY
 		}
+		
+		public function get tile():Tile{
+			var tile:Tile = new Tile();
+			tile.row = row;
+			tile.col = col;
+			return tile;
+		}
 		public function get row():Number{
 			if(pivot3D){
 				var vector3D:Vector3D = new Vector3D(getGridX(),getGridY(),pivot3D.z)
@@ -59,6 +67,14 @@ package game.entity
 				var plane:Vector3D = IsometricController.gridToPlane(row,col);
 				setVector(plane);
 			}
+		}
+		
+		public function get walkable():Boolean{
+			return false;
+		}
+		
+		public function get tileWeightage():int{
+			return 10;
 		}
 	}
 }
