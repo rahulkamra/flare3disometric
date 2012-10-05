@@ -61,6 +61,22 @@ package game.entity.base
 		}	
 		
 		
+		public  function showLeft():void{
+			
+		}
+		
+		public  function showRight():void{
+			
+		}
+		
+		public  function showBottom():void{
+			
+		}
+		
+		public  function showTop():void{
+			
+		}
+		
 		public  function showTopLeft():void{
 			
 		}
