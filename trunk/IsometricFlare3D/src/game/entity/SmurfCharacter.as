@@ -1,11 +1,14 @@
 package game.entity
 {
 	
+	import caurina.transitions.Tweener;
+	
 	import flare.core.Pivot3D;
 	import flare.loaders.Flare3DLoader;
 	import flare.utils.Pivot3DUtils;
 	
 	import flash.events.MouseEvent;
+	import flash.geom.Vector3D;
 	import flash.utils.Timer;
 	
 	import game.IsometricGame;
@@ -51,55 +54,69 @@ package game.entity
 		 * 
 		 **/
 		override public  function showTopLeft():void{
-			var change:int = BasePath.TOP_LEFT - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.TOP_LEFT;
 			rotate(change);
 		}
 		
 		override public function showTopRight():void{
-			var change:int = BasePath.TOP_RIGHT - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.TOP_RIGHT;
 			rotate(change);
 		}
 		
 		override public function showBottomLeft():void{
-			var change:int = BasePath.BOTTOM_LEFT - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.BOTTOM_LEFT;
 			rotate(change);
 		}
 		
 		override public function showBottomRight():void{
-			var change:int = BasePath.BOTTOM_RIGHT - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.BOTTOM_RIGHT;
 			rotate(change);
 		}
 		
 		override public  function showLeft():void{
-			var change:int = BasePath.LEFT - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.LEFT;
 			rotate(change);
 		}
 		
 		override public  function showRight():void{
-			var change:int = BasePath.RIGHT - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.RIGHT;
 			rotate(change);
 		}
 		
 		override public  function showBottom():void{
-			var change:int = BasePath.BOTTOM - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.BOTTOM;
 			rotate(change);
 		}
 		
 		override public  function showTop():void{
-			var change:int = BasePath.TOP - pathDriver.currentDirection;
+			var change:int = pivot3D.getRotation().z - BasePath.TOP;
 			rotate(change);
 			
 		}
 		
-		public function rotate(change:int):void{
-			var times:int = change/45;
-			for(var count:int = 0 ;count < Math.abs(times) ; count++){
-				if(times < 0){
-					rotateLeft();
-				}else{
-					rotateRight();
-				}
+		
+		public function set rotation(data:Number):void{
+			var rotation:Vector3D = pivot3D.getRotation();
+			pivot3D.setRotation(rotation.x,rotation.y,data);
+		}
+		
+		public function get rotation():Number{
+			var rotation:Vector3D = pivot3D.getRotation();
+			return rotation.z
+		}
+		
+		public function rotate(change:Number):void{
+			//Tweener.removeTweens(this);
+			var rotation:Vector3D = pivot3D.getRotation();
+			if(change > 180){
+				change = change - 360;
 			}
+			
+			if(change <- 180){
+				change = change + 360;
+			}
+			
+			Tweener.addTween(this,{rotation:this.rotation-change, time:0.1, transition:"linear"});
 		}
 		
 		public function rotateLeft():void{
@@ -121,6 +138,7 @@ package game.entity
 		}
 		
 		public function showRun():void{
+			pivot3D.frameSpeed = 0.5;
 			pivot3D.gotoAndPlay(RUN);
 		}
 		
