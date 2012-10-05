@@ -25,6 +25,10 @@ package game.entity.base
 			this.character = character;
 		}
 		
+		public static const TOP:String="TOP";
+		public static const RIGHT:String="RIGHT";
+		public static const BOTTOM:String="BOTTOM";
+		public static const LEFT:String="LEFT";
 		
 		public static const TOP_LEFT:String="TOP_LEFT";
 		public static const TOP_RIGHT:String="TOP_RIGHT";
@@ -122,6 +126,19 @@ package game.entity.base
 					break;
 				case BOTTOM_RIGHT:
 					character.showBottomRight();
+					
+					
+				case TOP:
+					character.showTop();
+					break;
+				case RIGHT:
+					character.showRight();
+					break;
+				case LEFT:
+					character.showLeft()
+					break;
+				case RIGHT:
+					character.showRight();
 					break;	
 			}  
 		}

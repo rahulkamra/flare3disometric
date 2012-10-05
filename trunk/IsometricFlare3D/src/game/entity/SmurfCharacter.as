@@ -39,13 +39,13 @@ package game.entity
 		public function turnToTile(tile:Tile):void{
 			pathDriver.currentDirection = pathDriver.calculateDirection(this.tile,tile);
 			/*if(tile.row > this.tile.row){
-				pathDriver.currentDirection = BasePath.BOTTOM_RIGHT;
+			pathDriver.currentDirection = BasePath.BOTTOM_RIGHT;
 			}else if(tile.row < this.tile.row){
-				pathDriver.currentDirection = BasePath.TOP_LEFT;
+			pathDriver.currentDirection = BasePath.TOP_LEFT;
 			}else if(tile.col > this.tile.col){
-				pathDriver.currentDirection = BasePath.BOTTOM_LEFT;
+			pathDriver.currentDirection = BasePath.BOTTOM_LEFT;
 			}else if(tile.col < this.tile.col){
-				pathDriver.currentDirection = BasePath.TOP_RIGHT;
+			pathDriver.currentDirection = BasePath.TOP_RIGHT;
 			}*/
 		}
 		
@@ -70,6 +70,23 @@ package game.entity
 		override public function showBottomRight():void{
 			trace("showBottomRight");
 		}
+		
+		override public  function showLeft():void{
+			trace("showLeft");
+		}
+		
+		override public  function showRight():void{
+			trace("showRight");
+		}
+		
+		override public  function showBottom():void{
+			trace("showBottom");
+		}
+		
+		override public  function showTop():void{
+			trace("showTop");
+		}
+		
 		
 		
 		public function showIdle():void{

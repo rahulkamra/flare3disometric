@@ -1,5 +1,6 @@
 package game.entity.base
 {
+	import game.entity.AvatarEvent;
 	import game.entity.SmurfCharacter;
 	
 	public class AvatarPath extends BasePath
@@ -24,14 +25,14 @@ package game.entity.base
 		}
 		
 		override public  function movementEnd():void{
-			//avatar.doAction(AvatarActionMapping.IDLE);
-			//dispatchEvent(new AvatarEvent(AvatarEvent.AVATAR_MOVEMENT_END));
+			avatar.showIdle();
+			dispatchEvent(new AvatarEvent(AvatarEvent.AVATAR_MOVEMENT_END));
 		}
 		
 		override public function stop():void
 		{
 			super.stop();
-			//(character as SmurfCharacter).doAction(AvatarActionMapping.IDLE);
+			avatar.showIdle();
 			
 		}
 		
