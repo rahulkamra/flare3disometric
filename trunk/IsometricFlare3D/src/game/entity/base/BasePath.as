@@ -137,8 +137,8 @@ package game.entity.base
 				case LEFT:
 					character.showLeft()
 					break;
-				case RIGHT:
-					character.showRight();
+				case BOTTOM:
+					character.showBottom();
 					break;	
 			}  
 		}
