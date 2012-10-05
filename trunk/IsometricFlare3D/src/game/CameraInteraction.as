@@ -13,6 +13,8 @@ package game
 	
 	import game.controller.DragManager;
 	import game.pathfinding.Tile;
+	
+	import mx.core.FlexGlobals;
 
 	public class CameraInteraction
 	{
@@ -32,6 +34,8 @@ package game
 		private static var regV:Vector3D  =null;
 		
 		private static var plane:Plane  =null;
+		
+		private static var justDragged:Boolean  =false;
 		
 		
 		public static function init(stage:Stage,scene:Scene3D,plane:Plane):void{
@@ -58,21 +62,34 @@ package game
 			
 			var changeV:Vector3D = Vector3DUtils.sub(tempV,event.info.point);
 			
+			if(Math.abs(changeV.x) > 10 || Math.abs(changeV.y) > 10){
+					justDragged = true;
+			}
 			plane.parent.translateX(-changeV.x);
 			plane.parent.translateY(-changeV.y);
 			
 			regX = event.info.point.x;
 			regY = event.info.point.y;
 			regV = event.info.point;
+				
+				
 		}  
 		
 		protected static function _mouseUp(event:MouseEvent3D):void
 		{
 			isMouseDown = false;
+			
 			if(!DragManager._onMouse){
-				//
-				//IsometricGame.char.moveToATile(new Tile(2,2,true))
+				if(!justDragged){
+					var localPoint:Vector3D = IsometricGame.plane.globalToLocal(event.info.point);
+					var grid:Array = IsometricController.planeToGrid(localPoint);
+					if(grid[0] > IsometricGame.rows-1 || grid[1] > IsometricGame.cols-1){
+					}else{
+						IsometricGame.char.moveToATile(new Tile(grid[0],grid[1],true))
+					}
+				}
 			}
+			justDragged = false
 			
 		}
 		
