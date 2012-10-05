@@ -25,20 +25,20 @@ package game.entity.base
 			this.character = character;
 		}
 		
-		public static const TOP:String="TOP";
-		public static const RIGHT:String="RIGHT";
-		public static const BOTTOM:String="BOTTOM";
-		public static const LEFT:String="LEFT";
+		public static const TOP:String="0";
+		public static const RIGHT:String="90";
+		public static const BOTTOM:String="180";
+		public static const LEFT:String="270";
 		
-		public static const TOP_LEFT:String="TOP_LEFT";
-		public static const TOP_RIGHT:String="TOP_RIGHT";
-		public static const BOTTOM_LEFT:String="BOTTOM_LEFT";
-		public static const BOTTOM_RIGHT:String="BOTTOM_RIGHT";
+		public static const TOP_LEFT:String="315";
+		public static const TOP_RIGHT:String="45";
+		public static const BOTTOM_LEFT:String="225";
+		public static const BOTTOM_RIGHT:String="125";
 		
 		
 		public var character:Character;
 		public var target:Character;
-		public var currentDirection:String;
+		public var currentDirection:String = BOTTOM;
 		/**
 		 * 
 		 * This functions should be implemented by any bath driver u make
@@ -113,7 +113,6 @@ package game.entity.base
 		
 		public function changeDirection(tile:Tile):void{
 			var direction:String = calculateDirection(character.tile, tile);
-			currentDirection = direction;
 			switch(direction){
 				case TOP_LEFT:
 					character.showTopLeft();
@@ -141,6 +140,7 @@ package game.entity.base
 					character.showBottom();
 					break;	
 			}  
+			currentDirection = direction;
 		}
 		
 		public function calculateDirection(fromTile:Tile,toTile:Tile):String{
