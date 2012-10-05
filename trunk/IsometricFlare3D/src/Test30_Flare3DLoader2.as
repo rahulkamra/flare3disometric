@@ -79,7 +79,7 @@ package
 				Pivot3DUtils.appendAnimation( model, anim1, "anim1" );
 				//model.play(1);
 				model.addEventListener(Pivot3D.ANIMATION_COMPLETE_EVENT,animationComplete);
-				model.gotoAndPlay( "anim1",0,Pivot3D.ANIMATION_STOP_MODE );
+				model.gotoAndPlay( "anim1" );
 			}
 			loadingAnimation = false;
 		}
