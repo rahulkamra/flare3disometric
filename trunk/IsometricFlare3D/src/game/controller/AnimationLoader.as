@@ -3,6 +3,7 @@ package game.controller
 	import com.electron.engine.core.SingletonManager;
 	
 	import flare.basic.Scene3D;
+	import flare.core.Label3D;
 	import flare.loaders.Flare3DLoader;
 	import flare.utils.Pivot3DUtils;
 	
@@ -48,10 +49,19 @@ package game.controller
 		protected function completeEvent(event:Event):void
 		{
 			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, idleAnimation, SmurfCharacter.IDLE);
-			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, runningAnimation, SmurfCharacter.RUN);
-			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, turnLeft, SmurfCharacter.TURN_LEFT);
-			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, turnRight, SmurfCharacter.TURN_RIGHT);
+			IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.IDLE, 1, 90) );
 			
+			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, runningAnimation, SmurfCharacter.RUN);
+			IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.RUN, 92, 107) );
+			
+			
+			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, turnLeft, SmurfCharacter.TURN_LEFT);
+			IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.TURN_LEFT, 109, 123) );
+			
+			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, turnRight, SmurfCharacter.TURN_RIGHT);
+			IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.TURN_RIGHT, 125, 139) );
+
+			trace( "IsometricGame.char.pivot3D.labels",IsometricGame.char.pivot3D.labels[SmurfCharacter.TURN_RIGHT])
 			
 			IsometricGame.char.showIdle();
 			

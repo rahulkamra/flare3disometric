@@ -1,6 +1,7 @@
 package game.entity
 {
 	
+	import flare.core.Pivot3D;
 	import flare.loaders.Flare3DLoader;
 	import flare.utils.Pivot3DUtils;
 	
@@ -65,7 +66,6 @@ package game.entity
 		}
 		
 		override public function showBottomRight():void{
-			trace("showBottomRight")
 			var change:int = BasePath.BOTTOM_RIGHT - pathDriver.currentDirection;
 			rotate(change);
 		}
@@ -103,13 +103,13 @@ package game.entity
 		}
 		
 		public function rotateLeft():void{
-			pivot3D.gotoAndPlay(TURN_LEFT);
+			pivot3D.gotoAndPlay(TURN_LEFT,1,Pivot3D.ANIMATION_STOP_MODE);
 			showRun();
 			pivot3D.rotateY(-45);
 		}
 		
 		public function rotateRight():void{
-			pivot3D.gotoAndPlay(TURN_RIGHT,0);
+			pivot3D.gotoAndPlay(TURN_RIGHT,1,Pivot3D.ANIMATION_STOP_MODE);
 			showRun();
 			pivot3D.rotateY(45);
 		}
@@ -117,7 +117,7 @@ package game.entity
 		
 		
 		public function showIdle():void{
-			pivot3D.gotoAndPlay( IDLE);
+			pivot3D.gotoAndPlay( IDLE,1);
 		}
 		
 		public function showRun():void{
