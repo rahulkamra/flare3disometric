@@ -25,15 +25,15 @@ package game.entity.base
 			this.character = character;
 		}
 		
-		public static const TOP:Number=0;
+		public static const TOP:Number=180;
 		public static const RIGHT:Number=90;
-		public static const BOTTOM:Number=180;
+		public static const BOTTOM:Number=0;
 		public static const LEFT:Number=270;
 		
-		public static const TOP_LEFT:Number=315;
-		public static const TOP_RIGHT:Number=45;
-		public static const BOTTOM_LEFT:Number=225;
-		public static const BOTTOM_RIGHT:Number=135;
+		public static const TOP_LEFT:Number=225;
+		public static const TOP_RIGHT:Number=135;
+		public static const BOTTOM_LEFT:Number=315;
+		public static const BOTTOM_RIGHT:Number=45;
 		
 		
 		public var character:Character;
