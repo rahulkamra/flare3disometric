@@ -28,6 +28,8 @@ package game.entity
 			
 		}
 		
+	
+
 		public function setVector(vector3D:Vector3D):void{
 			pivot3D.setPosition(vector3D.x+gridEntityVO.regX,vector3D.y+gridEntityVO.regY,vector3D.z);
 		}
@@ -75,6 +77,27 @@ package game.entity
 		
 		public function get tileWeightage():int{
 			return 10;
+		}
+		
+		
+		public function get y():Number
+		{
+			return pivot3D.y
+		}
+		
+		public function set y(value:Number):void
+		{
+			pivot3D.y = y
+		}
+		
+		public function get x():Number
+		{
+			return pivot3D.x
+		}
+		
+		public function set x(value:Number):void
+		{
+			pivot3D.x = value;
 		}
 	}
 }
