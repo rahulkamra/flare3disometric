@@ -25,20 +25,20 @@ package game.entity.base
 			this.character = character;
 		}
 		
-		public static const TOP:String="0";
-		public static const RIGHT:String="90";
-		public static const BOTTOM:String="180";
-		public static const LEFT:String="270";
+		public static const TOP:Number=0;
+		public static const RIGHT:Number=90;
+		public static const BOTTOM:Number=180;
+		public static const LEFT:Number=270;
 		
-		public static const TOP_LEFT:String="315";
-		public static const TOP_RIGHT:String="45";
-		public static const BOTTOM_LEFT:String="225";
-		public static const BOTTOM_RIGHT:String="125";
+		public static const TOP_LEFT:Number=315;
+		public static const TOP_RIGHT:Number=45;
+		public static const BOTTOM_LEFT:Number=225;
+		public static const BOTTOM_RIGHT:Number=125;
 		
 		
 		public var character:Character;
 		public var target:Character;
-		public var currentDirection:String = BOTTOM;
+		public var currentDirection:Number = 180;
 		/**
 		 * 
 		 * This functions should be implemented by any bath driver u make
@@ -112,7 +112,7 @@ package game.entity.base
 		
 		
 		public function changeDirection(tile:Tile):void{
-			var direction:String = calculateDirection(character.tile, tile);
+			var direction:Number = calculateDirection(character.tile, tile);
 			switch(direction){
 				case TOP_LEFT:
 					character.showTopLeft();
@@ -143,7 +143,7 @@ package game.entity.base
 			currentDirection = direction;
 		}
 		
-		public function calculateDirection(fromTile:Tile,toTile:Tile):String{
+		public function calculateDirection(fromTile:Tile,toTile:Tile):Number{
 			var stringVertDir:String;
 			var stringHorDir:String;
 			var totDir:String="";
@@ -180,7 +180,7 @@ package game.entity.base
 			
 			trace("Error in calculating Direction" , fromTile.row,fromTile.col)
 			trace("Error in calculating Direction" , toTile.row,toTile.col)
-			return '';
+			return NaN;
 			
 		}
 		/**
