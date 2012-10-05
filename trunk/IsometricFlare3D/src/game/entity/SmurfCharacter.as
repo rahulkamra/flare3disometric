@@ -121,7 +121,6 @@ package game.entity
 		}
 		
 		public function showRun():void{
-			pivot3D.stop();
 			pivot3D.gotoAndPlay(RUN);
 		}
 		
