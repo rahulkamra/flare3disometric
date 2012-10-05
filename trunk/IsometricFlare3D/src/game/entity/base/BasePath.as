@@ -126,7 +126,8 @@ package game.entity.base
 					break;
 				case BOTTOM_RIGHT:
 					character.showBottomRight();
-					
+					break;
+				
 				case TOP:
 					character.showTop();
 					break;
@@ -143,36 +144,43 @@ package game.entity.base
 		}
 		
 		public function calculateDirection(fromTile:Tile,toTile:Tile):String{
+			var stringVertDir:String;
+			var stringHorDir:String;
+			var totDir:String="";
 			if(fromTile.row > toTile.row){
-				if(fromTile.col > toTile.col ){
-					return TOP_LEFT;
-				}else if(fromTile.col < toTile.col ){
-					return BOTTOM_LEFT;
-				}else if(fromTile.col == toTile.col ){
-					return TOP_LEFT;
-				}
+				stringVertDir = "BOTTOM";
+			}
+			else if(fromTile.row < toTile.row){
+				stringVertDir = "TOP";
+			}
+			else{
+				stringVertDir = "";
+			}
+			if(fromTile.col > toTile.col){
+				stringHorDir = "LEFT";
+			}
+			else if(fromTile.col < toTile.col){
+				stringHorDir = "RIGHT";
+			}
+			else{
+				stringHorDir = "";
 			}
 			
-			if(fromTile.row < toTile.row){
-				if(fromTile.col > toTile.col ){
-					return BOTTOM_RIGHT;
-				}else if(fromTile.col < toTile.col ){
-					return BOTTOM_LEFT;
-				}else if(fromTile.col == toTile.col ){
-					return BOTTOM_RIGHT;
-				}
+			if(stringVertDir!="" && stringHorDir!="")
+			{
+				totDir = stringVertDir+"_"+stringHorDir;
+			}
+			else
+			{
+				totDir = stringVertDir + stringHorDir;
 			}
 			
-			if(fromTile.row == toTile.row){
-				if(fromTile.col > toTile.col ){
-					return TOP_RIGHT;
-				}else if(fromTile.col < toTile.col ){
-					return BOTTOM_LEFT;
-				}
+			if(totDir=="")
+			{
+				trace("Error in calculating Direction" , fromTile.row,fromTile.col)
+				trace("Error in calculating Direction" , toTile.row,toTile.col)
 			}
-			trace("Error in calculating Direction" , fromTile.row,fromTile.col)
-			trace("Error in calculating Direction" , toTile.row,toTile.col)
-			return '';
+			return totDir;
 			
 		}
 		/**
@@ -243,7 +251,7 @@ package game.entity.base
 			var cell:Node = path.pop();
 			var xpos:Number = cell.gridX;
 			var ypos:Number = cell.gridY;
-				
+			
 			if(cell.gridX != character.x || cell.gridY != character.y){
 				var fromTile:Tile = new Tile(cell.x,cell.y,true);
 				changeDirection(fromTile);	
