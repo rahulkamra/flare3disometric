@@ -20,10 +20,11 @@
 			import game.IsometricGame;
 			import game.controller.DragManager;
 			import game.entity.GridEntity;
+			import game.pathfinding.Tile;
 			import game.settings.GridEntityMapping;
 			
 			import mx.events.FlexEvent;
-
+			
 			private var test:game.IsometricGame;
 			
 			[Embed(source='Map.jpg')]
@@ -45,15 +46,13 @@
 			private var mesh:Mesh3D;
 			private var anim1:Flare3DLoader;
 			
-			private var kitchenWoodhouseUrl:String = "assets/house/bldg_general_countrykitchen_wood_t3-13.f3d"
-
 			private var gridEntity:GridEntity;
 			
 			public function addKitchenWoodHouse():void{
 				
 				gridEntity = new GridEntity(GridEntityMapping.KITCHEN_WOOD_HOUSE);
 				IsometricGame.addObject(gridEntity);
-				gridEntity.setRowPositionByGrid(0,0);
+				gridEntity.setPositionByGrid(0,0);
 				DragManager.addDrag(gridEntity);
 				
 			}
@@ -62,9 +61,9 @@
 				
 				gridEntity = new GridEntity(GridEntityMapping.MARKET_STALL);
 				IsometricGame.addObject(gridEntity);
-				gridEntity.setRowPositionByGrid(0,0);
-					
-			DragManager.addDrag(gridEntity);
+				gridEntity.setPositionByGrid(0,0);
+				
+				DragManager.addDrag(gridEntity);
 				
 			}
 			
@@ -72,12 +71,18 @@
 				
 				gridEntity = new GridEntity(GridEntityMapping.FEED_MAKER);
 				IsometricGame.addObject(gridEntity);
-				gridEntity.setRowPositionByGrid(0,0);
-					
+				gridEntity.setPositionByGrid(0,0);
 				DragManager.addDrag(gridEntity);
 				
 			}
 			
+			
+			
+			protected function moveAvatar(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				IsometricGame.char.moveToATile(new Tile(9,9,true))
+			}
 			
 		]]>
 	</fx:Script>
@@ -87,5 +92,6 @@
 	<s:Button x="33" y="322" label="KitchenWood" click="addKitchenWoodHouse()"/>
 	<s:Button x="33" y="363" label="MarketStall" click="addMarketStall()"/>
 	<s:Button x="33" y="396" label="FeedMaker" click="addFeedMaker()"/>
+	<s:Button x="33" y="429" label="Move" click="moveAvatar(event)"/>
 	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
 </s:Application>

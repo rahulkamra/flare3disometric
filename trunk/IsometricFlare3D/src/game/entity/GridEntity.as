@@ -43,9 +43,7 @@ package game.entity
 		}
 		
 		public function get tile():Tile{
-			var tile:Tile = new Tile();
-			tile.row = row;
-			tile.col = col;
+			var tile:Tile = new Tile(row,col,walkable);
 			return tile;
 		}
 		public function get row():Number{
@@ -64,7 +62,7 @@ package game.entity
 			return 0 ;
 		}
 		
-		public function setRowPositionByGrid(row:int,col:int):void{
+		public function setPositionByGrid(row:int,col:int):void{
 			if(pivot3D){
 				var plane:Vector3D = IsometricController.gridToPlane(row,col);
 				setVector(plane);
@@ -87,7 +85,8 @@ package game.entity
 		
 		public function set y(value:Number):void
 		{
-			pivot3D.y = y
+			pivot3D.setPosition(pivot3D.x,value,pivot3D.z);
+			trace("Setting Y" , value , pivot3D.y)
 		}
 		
 		public function get x():Number
@@ -97,7 +96,7 @@ package game.entity
 		
 		public function set x(value:Number):void
 		{
-			pivot3D.x = value;
+			pivot3D.setPosition(value,pivot3D.y,pivot3D.z);
 		}
 	}
 }

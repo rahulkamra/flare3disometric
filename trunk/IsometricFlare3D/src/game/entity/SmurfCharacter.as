@@ -1,20 +1,28 @@
-package com.ubisoft.smurfs.game.views.ascomponents.character
+package game.entity
 {
 	
 	import flash.events.MouseEvent;
 	import flash.utils.Timer;
 	
+	import game.entity.base.AvatarPath;
 	import game.entity.base.Character;
 	import game.model.GridEntityVO;
+	import game.pathfinding.Tile;
 	
 	public class SmurfCharacter extends Character 
 	{
 		public function SmurfCharacter(gridEntityVO:GridEntityVO)
 		{
-//			preloadAllActionSounds();
+			preloadAllAnimations()
+			pathDriver = new AvatarPath(this);
 			super(gridEntityVO);
+			
 		}
 		
+		private function preloadAllAnimations():void
+		{
+			
+		}		
 		
 		
 		public function turnToTile(tile:Tile):void{

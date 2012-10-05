@@ -16,7 +16,7 @@ package game.controller
 		{
 		}
 		
-		private static var _onMouse:GridEntity;
+		public static var _onMouse:GridEntity;
 		public static function addDrag(gridEntity:GridEntity):void{
 			DragManager._onMouse = gridEntity;
 			IsometricGame.plane.addEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);

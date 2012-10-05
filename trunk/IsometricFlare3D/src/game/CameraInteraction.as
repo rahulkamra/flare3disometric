@@ -10,6 +10,9 @@ package game
 	import flash.display.Stage;
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
+	
+	import game.controller.DragManager;
+	import game.pathfinding.Tile;
 
 	public class CameraInteraction
 	{
@@ -41,6 +44,7 @@ package game
 			plane.addEventListener(MouseEvent3D.MOUSE_UP,_mouseUp);
 			plane.addEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
 			
+			
 			stage.addEventListener(MouseEvent.MOUSE_WHEEL,_mouseWheel);
 			
 			
@@ -65,6 +69,11 @@ package game
 		protected static function _mouseUp(event:MouseEvent3D):void
 		{
 			isMouseDown = false;
+			if(!DragManager._onMouse){
+				//
+				//IsometricGame.char.moveToATile(new Tile(2,2,true))
+			}
+			
 		}
 		
 		protected static function _mouseDown(event:MouseEvent3D):void

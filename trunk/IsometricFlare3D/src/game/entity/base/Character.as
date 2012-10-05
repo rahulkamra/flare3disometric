@@ -4,8 +4,10 @@ package game.entity.base
 	import flash.events.MouseEvent;
 	import flash.filters.GlowFilter;
 	
+	import game.IsometricController;
 	import game.entity.GridEntity;
 	import game.model.GridEntityVO;
+	import game.pathfinding.Node;
 	import game.pathfinding.PathController;
 	import game.pathfinding.Tile;
 	
@@ -78,6 +80,8 @@ package game.entity.base
 		
 		public function moveToATile(tile:Tile):Boolean{
 			var path:Array = PathController.findPathToTile(this.tile,tile);
+			
+			
 			if(path.length == 0){
 				return false
 			}else{

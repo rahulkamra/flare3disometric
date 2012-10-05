@@ -191,12 +191,15 @@ package game.entity.base
 			if(pathArray.length == 1){
 				movementEnd();
 			}
+			
 			for (var i:int = 1; i < pathArray.length; i++)
 			{
 				var node:Node = pathArray[i] as Node
-				targetX = node.gridX
-				targetY = node.gridY;//for every spot on our waypoint, tween it through every point					
+				targetX = node.gridX + character.gridEntityVO.regX
+				targetY = node.gridY + character.gridEntityVO.regY;//for every spot on our waypoint, tween it through every point
+				
 				speedcheck = checkTween(targetX, targetY);
+				trace(speedcheck);
 				if(i == pathArray.length-1){
 					moveDude(node, i,true);
 				}else{
@@ -223,14 +226,16 @@ package game.entity.base
 			}
 			whileMoving();
 			var cell:Node = path.pop();
-			var xpos:Number = cell.gridX
-			var ypos:Number = cell.gridY
+			var xpos:Number = cell.gridX;
+			var ypos:Number = cell.gridY;
+				
 			if(cell.gridX != character.x || cell.gridY != character.y){
 				var fromTile:Tile = new Tile(cell.x,cell.y,true);
 				changeDirection(fromTile);	
 			}
 			currentTween = TweenLite.to(character, .25, { x:xpos, y:ypos, onComplete:moveToPath, onCompleteParams:[path] } );
 		}
+		
 		public function moveDude(node:Node, i:int,isEnd:Boolean = false):void{
 			if(i > 1){
 				speed1 = speed;
