@@ -44,7 +44,12 @@ package
 					'assets/male/avatar_male_anim_teleport-5.f3d',
 					'assets/male/avatar_male_anim_turn_left-8.f3d',
 					'assets/male/avatar_male_anim_turn_right-8.f3d',
-					'assets/male/avatar_male_anim_wave_rancherlady-3.f3d'
+					'assets/male/avatar_male_anim_wave_rancherlady-3.f3d',
+					'assets/male/avatar_male_anim_run_start-3.f3d',
+					'assets/male/avatar_male_anim_run-7.f3d',
+					'assets/male/avatar_male_anim_run_stop-7.f3d',
+					'assets/male/avatar_male_anim_run_magic-16.f3d'
+					
 				]
 				
 			});
