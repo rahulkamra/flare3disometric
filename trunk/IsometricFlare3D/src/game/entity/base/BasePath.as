@@ -33,12 +33,12 @@ package game.entity.base
 		public static const TOP_LEFT:Number=315;
 		public static const TOP_RIGHT:Number=45;
 		public static const BOTTOM_LEFT:Number=225;
-		public static const BOTTOM_RIGHT:Number=125;
+		public static const BOTTOM_RIGHT:Number=135;
 		
 		
 		public var character:Character;
 		public var target:Character;
-		public var currentDirection:Number = 180;
+		public var currentDirection:Number = BOTTOM;
 		/**
 		 * 
 		 * This functions should be implemented by any bath driver u make
@@ -142,7 +142,6 @@ package game.entity.base
 			}  
 			currentDirection = direction;
 		}
-		
 		public function calculateDirection(fromTile:Tile,toTile:Tile):Number{
 			var stringVertDir:String;
 			var stringHorDir:String;

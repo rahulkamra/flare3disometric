@@ -9,6 +9,7 @@ package game.entity
 	
 	import game.IsometricGame;
 	import game.entity.base.AvatarPath;
+	import game.entity.base.BasePath;
 	import game.entity.base.Character;
 	import game.model.GridEntityVO;
 	import game.pathfinding.Tile;
@@ -19,6 +20,8 @@ package game.entity
 		
 		public static const IDLE:String = "idle";
 		public static const RUN:String = "run";
+		public static const TURN_LEFT:String = "turn_left";
+		public static const TURN_RIGHT:String = "turn_right";
 		
 		public function SmurfCharacter(gridEntityVO:GridEntityVO)
 		{
@@ -47,35 +50,68 @@ package game.entity
 		 * 
 		 **/
 		override public  function showTopLeft():void{
-			trace("showTopLeft");
+			var change:int = BasePath.TOP_LEFT - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public function showTopRight():void{
-			trace("showTopRight");
+			var change:int = BasePath.TOP_RIGHT - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public function showBottomLeft():void{
-			trace("showBottomLeft");
+			var change:int = BasePath.BOTTOM_LEFT - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public function showBottomRight():void{
-			trace("showBottomRight");
+			trace("showBottomRight")
+			var change:int = BasePath.BOTTOM_RIGHT - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public  function showLeft():void{
-			trace("showLeft");
+			var change:int = BasePath.LEFT - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public  function showRight():void{
-			trace("showRight");
+			var change:int = BasePath.RIGHT - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public  function showBottom():void{
-			trace("showBottom");
+			var change:int = BasePath.BOTTOM - pathDriver.currentDirection;
+			rotate(change);
 		}
 		
 		override public  function showTop():void{
-			trace("showTop");
+			var change:int = BasePath.TOP - pathDriver.currentDirection;
+			rotate(change);
+			
+		}
+		
+		public function rotate(change:int):void{
+			var times:int = change/45;
+			for(var count:int = 0 ;count < Math.abs(times) ; count++){
+				if(times < 0){
+					rotateLeft();
+				}else{
+					rotateRight();
+				}
+			}
+		}
+		
+		public function rotateLeft():void{
+			pivot3D.gotoAndPlay(TURN_LEFT);
+			showRun();
+			pivot3D.rotateY(-45);
+		}
+		
+		public function rotateRight():void{
+			pivot3D.gotoAndPlay(TURN_RIGHT,0);
+			showRun();
+			pivot3D.rotateY(45);
 		}
 		
 		
@@ -85,6 +121,7 @@ package game.entity
 		}
 		
 		public function showRun():void{
+			pivot3D.stop();
 			pivot3D.gotoAndPlay(RUN);
 		}
 		
