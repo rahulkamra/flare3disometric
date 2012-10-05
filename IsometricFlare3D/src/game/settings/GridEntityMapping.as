@@ -16,6 +16,8 @@ package game.settings
 		public static const MALE_CHAR:GridEntityVO = new GridEntityVO("assets/male/avatar_male_surface_rig-11.f3d",8,8,1/2,2,2);
 		
 		public static const MALE_IDLE:String = "assets/male/avatar_male_anim_idle-15.f3d"
+		public static const MALE_RUN:String = "assets/male/avatar_male_anim_run-7.f3d"
+			
 		public static const MALE_TURN_LEFT:String = "assets/male/avatar_male_anim_turn_left-8.f3d"
 		public static const MALE_TURN_RIGHT:String = "assets/male/avatar_male_anim_turn_left-8.f3d"
 		

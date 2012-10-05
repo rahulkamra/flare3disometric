@@ -18,22 +18,13 @@ package game.entity
 	{
 		
 		public static const IDLE:String = "idle";
+		public static const RUN:String = "run";
+		
 		public function SmurfCharacter(gridEntityVO:GridEntityVO)
 		{
 			pathDriver = new AvatarPath(this);
 			super(gridEntityVO);
-			preloadAllAnimations()
 		}
-		
-		private function preloadAllAnimations():void
-		{
-			var idleAnimation:String = GridEntityMapping.MALE_IDLE;
-			
-			var idle:Flare3DLoader = new Flare3DLoader( idleAnimation);
-			IsometricGame.scene.library.push(idle);
-			Pivot3DUtils.appendAnimation( pivot3D, idle, "idle" );
-			
-		}		
 		
 		
 		public function turnToTile(tile:Tile):void{
@@ -91,6 +82,10 @@ package game.entity
 		
 		public function showIdle():void{
 			pivot3D.gotoAndPlay( IDLE);
+		}
+		
+		public function showRun():void{
+			pivot3D.gotoAndPlay(RUN);
 		}
 		
 		

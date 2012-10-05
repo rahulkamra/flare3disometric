@@ -70,7 +70,6 @@ package
 		
 		private function progressEvent(e:Event):void 
 		{
-			trace( scene.loadProgress );
 		}
 		
 		private function completeEvent(e:Event):void 
@@ -87,7 +86,6 @@ package
 		protected function animationComplete(event:Event):void
 		{
 			// TODO Auto-generated method stub
-			trace("Complete");
 		}
 	}
 }
