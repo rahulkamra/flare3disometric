@@ -77,9 +77,17 @@ package
 		{
 			if(loadingAnimation){
 				Pivot3DUtils.appendAnimation( model, anim1, "anim1" );
-				model.gotoAndPlay( "anim1" )
+				//model.play(1);
+				model.addEventListener(Pivot3D.ANIMATION_COMPLETE_EVENT,animationComplete);
+				model.gotoAndPlay( "anim1",0,Pivot3D.ANIMATION_STOP_MODE );
 			}
 			loadingAnimation = false;
+		}
+		
+		protected function animationComplete(event:Event):void
+		{
+			// TODO Auto-generated method stub
+			trace("Complete");
 		}
 	}
 }
