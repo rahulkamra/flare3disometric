@@ -180,6 +180,7 @@ package game.entity.base
 		//protected var speed:Number = 0.4;
 		public function get diagonalTime():Number{
 			return normalTime*Math.sqrt(2);
+			//return normalTime;
 		}
 		public function get normalTime():Number{
 			return 0.4
@@ -196,10 +197,8 @@ package game.entity.base
 			{
 				var node:Node = pathArray[i] as Node
 				targetX = node.gridX + character.gridEntityVO.regX
-				targetY = node.gridY + character.gridEntityVO.regY;//for every spot on our waypoint, tween it through every point
-				
+				targetY = node.gridY + character.gridEntityVO.regY;//for every spot on our waypoint, tween it through every point					
 				speedcheck = checkTween(targetX, targetY);
-				trace(speedcheck);
 				if(i == pathArray.length-1){
 					moveDude(node, i,true);
 				}else{

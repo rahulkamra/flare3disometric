@@ -86,7 +86,6 @@ package game.entity
 		public function set y(value:Number):void
 		{
 			pivot3D.setPosition(pivot3D.x,value,pivot3D.z);
-			trace("Setting Y" , value , pivot3D.y)
 		}
 		
 		public function get x():Number

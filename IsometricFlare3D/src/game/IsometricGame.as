@@ -123,8 +123,8 @@ package game
 			isometricGrid = new IsometricGrid();
 			wrapperPlane.addChild(isometricGrid);
 			
-			cols = 10;//bitmap.width/cellSize;
-			rows= 10;//bitmap.height/cellSize;
+			cols = bitmap.width/cellSize;
+			rows= bitmap.height/cellSize;
 			isometricGrid.init(rows,cols,cellSize);
 			isometricGrid.z = plane.z-1;
 			
@@ -140,7 +140,6 @@ package game
 		
 		public function createPathFindingGrid():void{
 			aStartGrid = new Grid(cols,rows);
-			_log2DArray(aStartGrid._nodes);
 			//add unwalkable areas'
 		}
 		
@@ -181,8 +180,6 @@ package game
 					}
 				}
 			}
-			
-			_log2DArray(gridArray);
 		}
 		
 		public static function canPlace(gridEntity:GridEntity):Boolean{
