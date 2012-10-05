@@ -18,7 +18,8 @@ package game.entity.base
 		}
 		
 		override public function movementStart():void{
-			//dispatchEvent(new AvatarEvent(AvatarEvent.AVATAR_MOVEMENT_START));
+			(character as SmurfCharacter).showRun();
+			dispatchEvent(new AvatarEvent(AvatarEvent.AVATAR_MOVEMENT_START));
 		}
 		private function moveToPath(path:Array):void{
 			move(path);

@@ -127,7 +127,6 @@ package game.entity.base
 				case BOTTOM_RIGHT:
 					character.showBottomRight();
 					
-					
 				case TOP:
 					character.showTop();
 					break;
