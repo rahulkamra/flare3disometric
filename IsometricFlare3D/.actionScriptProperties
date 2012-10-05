@@ -14,9 +14,8 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="CityBuilderFlare3D.mxml"/>
-    <application path="RegistrationPoint.mxml"/>
     <application path="Flare3D.mxml"/>
+    <application path="CityBuilderFlare3D.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

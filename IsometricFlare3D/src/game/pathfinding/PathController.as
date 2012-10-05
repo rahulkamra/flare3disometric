@@ -3,6 +3,7 @@ package game.pathfinding
 	
 	import flash.geom.Point;
 	
+	import game.IsometricController;
 	import game.IsometricGame;
 	import game.entity.GridEntity;
 	
@@ -29,7 +30,7 @@ package game.pathfinding
 					if(count<0 || innercount<0)continue;
 					if(count>IsometricGame.rows-1 || innercount > IsometricGame.cols-1)continue;
 					if(isWalkable){
-						if(!IsometricController.Instance.getNodeAt(count,innercount).walkable){
+						if(!IsometricGame.getNodeAt(count,innercount).walkable){
 							continue;
 						}
 					}
@@ -55,7 +56,7 @@ package game.pathfinding
 					if(count<0 || innercount<0)continue;
 					if(count>IsometricGame.rows-1 || innercount > IsometricGame.cols-1)continue;
 					if(isWalkable){
-						if(!IsometricController.Instance.getNodeAt(count,innercount).walkable){
+						if(!IsometricGame.getNodeAt(count,innercount).walkable){
 							continue;
 						}
 					}
@@ -82,88 +83,8 @@ package game.pathfinding
 		
 		
 		
-		public static function quickSort(arr:ArrayCollection , low:int , high:int , centerTile:Tile):void {
-			var i:int;
-			var j:int;
-			var x:Tile;
-			
-			if (low < high) {
-				
-				i = low;
-				j = high;
-				x = arr[i];
-				
-				while (i < j) {
-					while (i < j && Point.distance((arr[j] as Tile).point , centerTile.point) > Point.distance(x.point , centerTile.point)) {
-						j--; 
-					}
-					if (i < j) {
-						arr[i] = arr[j];
-						i++;
-					}
-					while (i < j && Point.distance((arr[i] as Tile).point , centerTile.point) < Point.distance(x.point , centerTile.point)) {
-						i++; 
-					}
-					
-					if (i < j) {
-						arr[j] = arr[i];
-						j--;
-					}
-				}
-				arr[i] = x;
-				quickSort(arr, low, i - 1,centerTile);
-				quickSort(arr, i + 1, high ,centerTile);
-			}
-		}
-		
-		
 
 		
-		public static function returnNearestTileBaseOnType(row:int , col:int , type:int , distanceToCheck:int=1 , isWalkable:Boolean=false , subType:Number=0):GridEntity
-		{
-			var aroundTiles:ArrayCollection=allTilesAroundTile(row,col,distanceToCheck,isWalkable);
-			var originalTile:Tile=new Tile(row,col,false);
-			var path:Array;
-			
-			quickSort(aroundTiles,0,aroundTiles.length-1,originalTile)
-			for each(var eachItem:Tile in aroundTiles)
-			{
-				if(IsometricGame.gridArray[eachItem.row][eachItem.col] == 0)
-					continue;
-				if(isWalkable){
-					if(!IsometricController.Instance.getNodeAt(eachItem.row,eachItem.col).walkable)
-						continue;					
-				}
-				
-				if(IsometricGame.gridArray[eachItem.row][eachItem.col] == type && GridConstants.convertTypeToString(type) == SmurfConstants.SPAWN)
-				{
-					var spawn:Spawn=SmurfUIController.Instance.returnItemOnMapByTile(eachItem , SmurfConstants.SPAWN) as Spawn;
-					if(spawn.spawnVO.groupNumber == subType)
-					{
-						path=findPathToGridEntity(originalTile,spawn);
-						if(path.length > 0)
-						{
-												
-							return spawn;
-						}
-					}
-					continue;
-				}
-				
-				
-				if(IsometricGame.gridArray[eachItem.row][eachItem.col] == type)
-				{
-					
-					var item:GridEntity=SmurfUIController.Instance.returnItemOnMapByTile(eachItem,GridConstants.convertTypeToString(type));
-					path=findPathToGridEntity(originalTile,item);
-					if(path.length > 0)
-						return item;
-				}	
-			}
-			
-			
-			return null;
-		}
 		
 		
 		public static function getNeighbours(gridEntity:GridEntity, isWalkable:Boolean):ArrayCollection{
@@ -195,7 +116,7 @@ package game.pathfinding
 			var pathsArray:Array = new Array();
 			for(var count:int = 0 ; count < tiles.length ; count++){
 				var eachTile:Tile = tiles.getItemAt(count) as Tile;
-				var eachNode:Node = IsometricController.Instance.getNodeAt(eachTile.row,eachTile.col);
+				var eachNode:Node = IsometricGame.getNodeAt(eachTile.row,eachTile.col);
 				if(eachNode.walkable == false){
 					continue;
 				}
@@ -210,7 +131,7 @@ package game.pathfinding
 		}
 		
 		public static function findPathToTile(fromTile:Tile , toTile:Tile):Array{
-			var node:Node = IsometricController.Instance.getNodeAt(toTile.row,toTile.col);
+			var node:Node = IsometricGame.getNodeAt(toTile.row,toTile.col);
 			if(node.walkable){
 				return getPath(fromTile,toTile);
 			}else{
@@ -219,7 +140,7 @@ package game.pathfinding
 		}
 		
 		public static function getPath(fromTile:Tile,toTile:Tile):Array{
-			var path:Array = getPathWithGrid(fromTile,toTile,IsometricController.Instance.aStartGrid);
+			var path:Array = getPathWithGrid(fromTile,toTile,IsometricGame.aStartGrid);
 			return path;
 		}
 		

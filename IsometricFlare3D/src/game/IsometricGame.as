@@ -27,9 +27,11 @@ package game
 	import flash.geom.Vector3D;
 	
 	import game.entity.GridEntity;
+	import game.entity.SmurfCharacter;
 	import game.pathfinding.Grid;
 	import game.pathfinding.Node;
 	import game.pathfinding.Tile;
+	import game.settings.GridEntityMapping;
 	
 	public class IsometricGame extends Sprite
 	{
@@ -51,7 +53,9 @@ package game
 		public static var cols:int;
 		
 		public static var gridArray:Array;
-		public var aStartGrid:Grid;
+		public static var aStartGrid:Grid;
+		
+		public static var char:SmurfCharacter;
 
 		public static var isometricGrid:IsometricGrid;
 		
@@ -100,6 +104,16 @@ package game
 			plane.x = bitmap.width/2;
 			plane.y = bitmap.width/2;
 			wrapperPlane.addChild(plane);
+			
+			addChar();
+		}
+		
+		private function addChar():void
+		{
+			// TODO Auto Generated method stub
+			char = new SmurfCharacter(GridEntityMapping.MALE_CHAR);
+			char.setPositionByGrid(0,0);
+			addObject(char);
 		}
 		
 		private function addGrid():void
@@ -109,13 +123,13 @@ package game
 			isometricGrid = new IsometricGrid();
 			wrapperPlane.addChild(isometricGrid);
 			
-			cols = bitmap.width/cellSize;
-			rows= bitmap.height/cellSize;
+			cols = 10;//bitmap.width/cellSize;
+			rows= 10;//bitmap.height/cellSize;
 			isometricGrid.init(rows,cols,cellSize);
 			isometricGrid.z = plane.z-1;
 			
 			initGrid();
-			
+			createPathFindingGrid();
 		}
 		
 		private function initGrid():void
@@ -126,8 +140,14 @@ package game
 		
 		public function createPathFindingGrid():void{
 			aStartGrid = new Grid(cols,rows);
+			_log2DArray(aStartGrid._nodes);
 			//add unwalkable areas'
 		}
+		
+		public static function getNodeAt(row:int,col:int):Node{
+			return aStartGrid.getNode(row,col)
+		}
+			
 		
 		
 		public static function addObject(gridEntity:GridEntity,populateValue:Boolean = false):void
@@ -154,7 +174,7 @@ package game
 			plane.addChild(object3D);
 			
 			if(populateValue){
-				
+				fillPathfindingGrid(gridEntity,gridEntity.tile);
 				for(var row:int = 0 ; row < gridEntity.gridEntityVO.rows ; row++){
 					for(var col:int = 0 ; col < gridEntity.gridEntityVO.cols ; col++){
 						gridArray[gridEntity.row+row][gridEntity.col+col] = 1
@@ -179,7 +199,7 @@ package game
 		
 		
 		
-		public function fillPathfindingGrid(gridEntity:GridEntity,tile:Tile):void{
+		public static function fillPathfindingGrid(gridEntity:GridEntity,tile:Tile):void{
 			for(var count:int =0 ; count < gridEntity.gridEntityVO.rows ;count++){
 				for(var innterCount:int = 0 ; innterCount < gridEntity.gridEntityVO.cols ;innterCount++){
 					var node:Node = getNodeAt(tile.row+count,tile.col+innterCount);

@@ -1,6 +1,8 @@
 package game.pathfinding
 {
+	import game.IsometricController;
 	import game.IsometricGame;
+	import game.IsometricGrid;
 
 	/**
 	 * Represents a specific node evaluated as part of a pathfinding algorithm.
@@ -14,12 +16,14 @@ package game.pathfinding
 		public var h:Number;
 		public var parent:Node;
 		public var costMultiplier:Number = 1.0;
+		
 		public function get gridX():Number{
-			return x*IsometricGame.cellSize;;
+			return IsometricController.gridToPlane(x,y).x;//  x*IsometricGame.cellSize;
 		}
 		public function get gridY():Number{
-			return y*IsometricGame.cellSize;
+			return IsometricController.gridToPlane(x,y).y;
 		}
+		
 		
 		public var walkable:Boolean = true;
 		
