@@ -148,39 +148,39 @@ package game.entity.base
 			var stringHorDir:String;
 			var totDir:String="";
 			if(fromTile.row > toTile.row){
-				stringVertDir = "BOTTOM";
+				if(fromTile.col > toTile.col){
+					return BOTTOM_LEFT;
+				}
+				else if(fromTile.col < toTile.col){
+					return BOTTOM_RIGHT;
+				}
+				else{
+					return BOTTOM;
+				}
 			}
 			else if(fromTile.row < toTile.row){
-				stringVertDir = "TOP";
+				if(fromTile.col > toTile.col){
+					return TOP_LEFT;
+				}
+				else if(fromTile.col < toTile.col){
+					return TOP_RIGHT;
+				}
+				else{
+					return TOP;
+				}
 			}
 			else{
-				stringVertDir = "";
-			}
-			if(fromTile.col > toTile.col){
-				stringHorDir = "LEFT";
-			}
-			else if(fromTile.col < toTile.col){
-				stringHorDir = "RIGHT";
-			}
-			else{
-				stringHorDir = "";
+				if(fromTile.col > toTile.col){
+					return LEFT;
+				}
+				if(fromTile.col < toTile.col){
+					return RIGHT;
+				}
 			}
 			
-			if(stringVertDir!="" && stringHorDir!="")
-			{
-				totDir = stringVertDir+"_"+stringHorDir;
-			}
-			else
-			{
-				totDir = stringVertDir + stringHorDir;
-			}
-			
-			if(totDir=="")
-			{
-				trace("Error in calculating Direction" , fromTile.row,fromTile.col)
-				trace("Error in calculating Direction" , toTile.row,toTile.col)
-			}
-			return totDir;
+			trace("Error in calculating Direction" , fromTile.row,fromTile.col)
+			trace("Error in calculating Direction" , toTile.row,toTile.col)
+			return '';
 			
 		}
 		/**
