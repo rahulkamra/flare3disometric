@@ -1,26 +1,37 @@
 package game.entity
 {
 	
+	import flare.loaders.Flare3DLoader;
+	import flare.utils.Pivot3DUtils;
+	
 	import flash.events.MouseEvent;
 	import flash.utils.Timer;
 	
+	import game.IsometricGame;
 	import game.entity.base.AvatarPath;
 	import game.entity.base.Character;
 	import game.model.GridEntityVO;
 	import game.pathfinding.Tile;
+	import game.settings.GridEntityMapping;
 	
 	public class SmurfCharacter extends Character 
 	{
+		
+		public static const IDLE:String = "idle";
 		public function SmurfCharacter(gridEntityVO:GridEntityVO)
 		{
-			preloadAllAnimations()
 			pathDriver = new AvatarPath(this);
 			super(gridEntityVO);
-			
+			preloadAllAnimations()
 		}
 		
 		private function preloadAllAnimations():void
 		{
+			var idleAnimation:String = GridEntityMapping.MALE_IDLE;
+			
+			var idle:Flare3DLoader = new Flare3DLoader( idleAnimation);
+			IsometricGame.scene.library.push(idle);
+			Pivot3DUtils.appendAnimation( pivot3D, idle, "idle" );
 			
 		}		
 		
@@ -45,15 +56,24 @@ package game.entity
 		 * 
 		 **/
 		override public  function showTopLeft():void{
+			trace("showTopLeft");
 		}
 		
 		override public function showTopRight():void{
+			trace("showTopRight");
 		}
 		
 		override public function showBottomLeft():void{
+			trace("showBottomLeft");
 		}
 		
 		override public function showBottomRight():void{
+			trace("showBottomRight");
+		}
+		
+		
+		public function showIdle():void{
+			pivot3D.gotoAndPlay( IDLE);
 		}
 		
 		

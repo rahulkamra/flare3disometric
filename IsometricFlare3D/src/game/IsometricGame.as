@@ -14,6 +14,7 @@ package game
 	import flare.core.Pivot3D;
 	import flare.core.Texture3D;
 	import flare.events.MouseEvent3D;
+	import flare.loaders.Flare3DLoader;
 	import flare.materials.Shader3D;
 	import flare.materials.filters.TextureFilter;
 	import flare.primitives.Plane;
@@ -26,6 +27,7 @@ package game
 	import flash.events.MouseEvent;
 	import flash.geom.Vector3D;
 	
+	import game.controller.AnimationLoader;
 	import game.entity.GridEntity;
 	import game.entity.SmurfCharacter;
 	import game.pathfinding.Grid;
@@ -71,7 +73,14 @@ package game
 			scene.camera.zoom = 0.4;
 			
 			initWorld();
-			stage.addEventListener(Event.ENTER_FRAME,_enterFrame);
+			AnimationLoader.Instance.loadAnimations(scene);
+		}
+		
+		
+		protected function completeEvent(event:Event):void
+		{
+			// TODO Auto-generated method stub
+			trace("Loaded" , event.target);
 		}
 		
 		private function initWorld():void

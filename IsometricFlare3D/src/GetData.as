@@ -23,10 +23,7 @@ package
 				'assets/chicken/chicken_adult_generic_anim_eat-2.f3d',
 				'assets/chicken/chicken_adult_generic_anim_happy-2.f3d',
 				'assets/chicken/chicken_adult_generic_anim_notice_me-3.f3d',
-				
 				'assets/chicken/chicken_adult_generic_anim_notice_me-3.f3d'
-				
-			
 			]});
 			
 			ac.addItem({name:'Horse' , url:'assets/horse/horse_child_camarillo_surface_rig-5.f3d'});

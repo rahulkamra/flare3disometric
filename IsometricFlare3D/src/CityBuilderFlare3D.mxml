@@ -81,7 +81,7 @@
 			protected function moveAvatar(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				IsometricGame.char.moveToATile(new Tile(9,9,true))
+				IsometricGame.char.showIdle();
 			}
 			
 		]]>
