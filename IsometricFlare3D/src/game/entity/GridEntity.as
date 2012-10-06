@@ -3,12 +3,14 @@ package game.entity
 	import flare.core.Mesh3D;
 	import flare.core.Pivot3D;
 	
+	import flash.events.Event;
 	import flash.geom.Vector3D;
 	
 	import game.IsometricController;
 	import game.IsometricGame;
 	import game.model.GridEntityVO;
 	import game.pathfinding.Tile;
+	import game.settings.GridEntityMapping;
 	
 	public class GridEntity 
 	{
@@ -22,14 +24,18 @@ package game.entity
 			this.gridEntityVO = gridEntityVO;
 			pivot3D = IsometricGame.scene.addChildFromFile(gridEntityVO.url) as Pivot3D;
 			pivot3D.setRotation(-90,0,0);
-			
+			pivot3D.rotateY(gridEntityVO.rotation);
 			pivot3D.setScale(gridEntityVO.scale,gridEntityVO.scale,gridEntityVO.scale); 
-			pivot3D.play();
 			
+			if(gridEntityVO.url == GridEntityMapping.TREE_1.url || gridEntityVO.url == GridEntityMapping.TREE_2.url || gridEntityVO.url == GridEntityMapping.TREE_3.url || gridEntityVO.url == GridEntityMapping.TREE_4.url){
+				pivot3D.stop();
+			}else{
+				pivot3D.play();
+			}
 		}
 		
-	
-
+		
+		
 		public function setVector(vector3D:Vector3D):void{
 			pivot3D.setPosition(vector3D.x+gridEntityVO.regX,vector3D.y+gridEntityVO.regY,vector3D.z);
 		}

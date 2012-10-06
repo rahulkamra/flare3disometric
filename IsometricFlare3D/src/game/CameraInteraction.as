@@ -122,28 +122,28 @@ package game
 		private static var currentZoom:int = 3;
 		
 		private static var level1FieldView:int = 31;
-		private static var level1Camera:int = -60;
+		private static var level1Camera:int = -70;
 		private static var level1XMove:int = 480;
 		private static var level1YMove:int = 480;
 		
 		private static var level2FieldView:int = 27;
-		private static var level2Camera:int = -45;
+		private static var level2Camera:int = -60;
 		private static var level2XMove:int = 0;
 		private static var level2YMove:int = 0;
 		
 		
 		private static var level3FieldView:int = 23;
-		private static var level3Camera:int = -45;
+		private static var level3Camera:int = -60;
 		private static var level3XMove:int = 0;
 		private static var level3YMove:int = 0;
 		
 		private static var level4FieldView:int = 19;
-		private static var level4Camera:int = -45;
+		private static var level4Camera:int = -60;
 		private static var level4XMove:int = 0;
 		private static var level4YMove:int = 0;
 		
 		private static var level5FieldView:int = 15;
-		private static var level5Camera:int = -45;
+		private static var level5Camera:int = -60;
 		private static var level5XMove:int = 0;
 		private static var level5YMove:int = 0;
 		

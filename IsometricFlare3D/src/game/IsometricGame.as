@@ -49,7 +49,7 @@ package game
 		
 		public static var wrapperPlane:Plane;
 		
-		private var debugPlane:Plane;
+		public static var debugPlane:Plane;
 		
 		public static var cellSize:int = 16;;
 		public static var rows:int;
@@ -90,6 +90,7 @@ package game
 			addMap();
 			addGrid();
 			addChar();
+			
 			addSkybox();
 			CameraInteraction.init(_stage,scene,plane);
 		}		
@@ -100,7 +101,6 @@ package game
 			skybox.setRotation(-135,0,-45);
 			scene.addChild(skybox,false);
 		}
-		
 		protected function _enterFrame(event:Event):void
 		{
 			if(scene){
@@ -131,6 +131,56 @@ package game
 			char.setPositionByGrid(rows/2-20,cols/2-20);
 			addObject(char);
 		}
+		
+		public static function addTrees():void
+		{
+			var count:int = 0 ;
+			for(var row:int = 0 ; row < rows ; row ++){
+				for(var col:int = 0 ; col < cols; col ++){
+					if(row < rows/4 || row > rows/4*3){
+						addTree(row,col);
+						count++;
+					}else{
+						if(col < cols/4 || col > cols/4*3){
+							addTree(row,col);
+							count++;
+						}
+					}
+				}
+			}
+			
+			trace(count);
+			
+		}
+		
+		private static function addTree(row:int,col:int):void{
+			var gridEntity:GridEntity
+			if(Utils.Instance.canDo(1)){
+				var index:int = Utils.Instance.getRandomIntegerBetween(1,4);
+				switch(index){
+					case 1:{
+						gridEntity  = new GridEntity(GridEntityMapping.TREE_1);
+						break;
+					}
+					case 2:{
+						gridEntity   = new GridEntity(GridEntityMapping.TREE_2);
+						break;
+					}
+					case 3:{
+						gridEntity   = new GridEntity(GridEntityMapping.TREE_3);
+						break;
+					}
+					case 4:{
+						gridEntity  = new GridEntity(GridEntityMapping.TREE_4);
+						break;
+					}
+				}
+				
+				gridEntity.setPositionByGrid(row,col);
+				IsometricGame.addObject(gridEntity,true);
+			}
+		}
+		
 		
 		private function addGrid():void
 		{

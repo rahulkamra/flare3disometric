@@ -25,7 +25,7 @@ package game
 			scene.camera.setPosition( 0, 0, -1000);
 			scene.camera.lookAt( 0, 0, -1);
 			
-			cameraRotation = -45;
+			cameraRotation = -60;
 
 			scene.camera.fieldOfView = 10;
 			
