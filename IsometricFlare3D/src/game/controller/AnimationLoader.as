@@ -6,6 +6,7 @@ package game.controller
 	import flare.core.Label3D;
 	import flare.core.Pivot3D;
 	import flare.loaders.Flare3DLoader;
+	import flare.loaders.Flare3DLoader1;
 	import flare.loaders.Flare3DLoader3;
 	import flare.utils.Pivot3DUtils;
 	
@@ -62,20 +63,20 @@ package game.controller
 			
 			scene.removeEventListener( Scene3D.COMPLETE_EVENT, animationComplete );
 			if(!animationLoaded){
-				Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, idleAnimation, SmurfCharacter.IDLE);
-				IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.IDLE, 1, 90) );
+				Pivot3DUtils.appendAnimation( IsometricGame.char.asset3D, idleAnimation, SmurfCharacter.IDLE);
+				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.IDLE, 1, 90) );
 				
-				Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, runningAnimation, SmurfCharacter.RUN);
-				IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.RUN, 92, 107) );
+				Pivot3DUtils.appendAnimation( IsometricGame.char.asset3D, runningAnimation, SmurfCharacter.RUN);
+				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.RUN, 92, 107) );
 				
 				
-				Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, turnLeft, SmurfCharacter.TURN_LEFT);
-				IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.TURN_LEFT, 109, 123) );
+				Pivot3DUtils.appendAnimation( IsometricGame.char.asset3D, turnLeft, SmurfCharacter.TURN_LEFT);
+				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.TURN_LEFT, 109, 123) );
 				
-				Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, turnRight, SmurfCharacter.TURN_RIGHT);
-				IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.TURN_RIGHT, 125, 139) );
+				Pivot3DUtils.appendAnimation( IsometricGame.char.asset3D, turnRight, SmurfCharacter.TURN_RIGHT);
+				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.TURN_RIGHT, 125, 139) );
 	
-				trace( "IsometricGame.char.pivot3D.labels",IsometricGame.char.pivot3D.labels[SmurfCharacter.TURN_RIGHT])
+				trace( "IsometricGame.char.pivot3D.labels",IsometricGame.char.asset3D.labels[SmurfCharacter.TURN_RIGHT])
 				
 				IsometricGame.char.showIdle();
 				animationLoaded = true;
@@ -88,6 +89,7 @@ package game.controller
 		private static var dict:Dictionary = new Dictionary();
 		private var pivotToRemove:Array = new Array
 		public function preLoadTrees():void{
+			Flare3DLoader1;
 			scene.addEventListener( Scene3D.COMPLETE_EVENT, treePreloadingComplete );
 			
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.TREE_1.url));
@@ -97,6 +99,7 @@ package game.controller
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.FEED_MAKER.url));
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.KITCHEN_WOOD_HOUSE.url));
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.MARKET_STALL.url));
+			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.RING));
 		}
 		
 		public function treePreloadingComplete(event:Event):void{
