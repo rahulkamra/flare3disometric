@@ -103,7 +103,7 @@ package game
 			
 			var pivot3D:Pivot3D = IsometricGame.scene.addChildFromFile("assets/sky/tera_general_background_small_sky-3.f3d") as Pivot3D;
 			
-			pivot3D.setScale(1000,1000,1000);
+			//pivot3D.setScale(1000,1000,1000);
 				
 		//	plane.addChild( pivot3D );
 		}
