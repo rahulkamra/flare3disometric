@@ -49,7 +49,7 @@ package game
 		
 		public static var wrapperPlane:Plane;
 		
-		public static var debugPlane:Plane;
+		private var debugPlane:Plane;
 		
 		public static var cellSize:int = 16;;
 		public static var rows:int;
@@ -90,9 +90,16 @@ package game
 			addMap();
 			addGrid();
 			addChar();
-			
+			addSkybox();
 			CameraInteraction.init(_stage,scene,plane);
 		}		
+		
+		private function addSkybox():void
+		{
+			var skybox:SkyBox = new SkyBox("assets/skybox",SkyBox.FOLDER_JPG,scene,0.05);
+			skybox.setRotation(-135,0,-45);
+			scene.addChild(skybox,false);
+		}
 		
 		protected function _enterFrame(event:Event):void
 		{
