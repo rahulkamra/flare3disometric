@@ -101,19 +101,6 @@ package game
 		protected static function _mouseUp(event:MouseEvent3D):void
 		{
 			isMouseDown = false;
-			/*if(!DragManager._onMouse){
-				if(!justDragged){
-					
-					var localPoint:Vector3D = IsometricGame.plane.globalToLocal(event.info.point);
-					trace(event.info.point);
-					var grid:Array = IsometricController.planeToGrid(localPoint);
-					if(grid[0] > IsometricGame.rows-1 || grid[1] > IsometricGame.cols-1){
-					}else{
-						trace("Moving to a tile")
-						IsometricGame.char.moveToATile(new Tile(grid[0],grid[1],true))
-					}
-				}
-			}*/
 			justDragged = false
 			
 		}
@@ -135,12 +122,14 @@ package game
 			if(temp < 1 ){
 				if(scene.camera.fieldOfView < 25){
 					scene.camera.fieldOfView ++;
+					scene.camera.setRotation(-45-scene.camera.fieldOfView,0,-45);
 				}
 			}
 			
 			if(temp > 1 ){
-				if(scene.camera.fieldOfView > 5){
+				if(scene.camera.fieldOfView > 10){
 					scene.camera.fieldOfView --;
+					scene.camera.setRotation(-45-scene.camera.fieldOfView,0,-45);
 				}
 				
 			}	
