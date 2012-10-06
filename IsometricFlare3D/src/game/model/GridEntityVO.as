@@ -2,7 +2,7 @@ package game.model
 {
 	public class GridEntityVO
 	{
-		public function GridEntityVO(url:String,regX:int,regY:int,scale:Number,rows:int,cols:int,rotation:int = 0)
+		public function GridEntityVO(url:String,baseid:Array,regX:int,regY:int,scale:Number,rows:int,cols:int,rotation:int = 0)
 		{
 			this.url = url;
 			this.regX = regX;
@@ -13,6 +13,8 @@ package game.model
 			this.cols = cols;
 			
 			this.rotation = rotation;
+			
+			this.baseid = baseid;
 				
 		}
 		
@@ -23,6 +25,7 @@ package game.model
 		public var rows:int = 0;
 		public var cols:int = 0;
 		public var rotation:int = 0;
+		public var baseid:Array = new Array();
 		
 	}
 }

@@ -26,17 +26,19 @@ package game.entity
 			pivot3D.setRotation(-90,0,0);
 			pivot3D.rotateY(gridEntityVO.rotation);
 			pivot3D.setScale(gridEntityVO.scale,gridEntityVO.scale,gridEntityVO.scale); 
-			
-			
+			if(gridEntityVO.baseid.length>0)
+			{
+				for each(var idToHide:int in gridEntityVO.baseid)
+				{
+					pivot3D.children[idToHide].visible = false;	
+				}
+			}
 			if(gridEntityVO.url == GridEntityMapping.TREE_1.url || gridEntityVO.url == GridEntityMapping.TREE_2.url || gridEntityVO.url == GridEntityMapping.TREE_3.url || gridEntityVO.url == GridEntityMapping.TREE_4.url){
 				pivot3D.stop();
-				pivot3D.setLayer(10);
 			}else{
 				pivot3D.play();
 			}
 		}
-		
-		
 		
 		public function setVector(vector3D:Vector3D):void{
 			pivot3D.setPosition(vector3D.x+gridEntityVO.regX,vector3D.y+gridEntityVO.regY,vector3D.z);
