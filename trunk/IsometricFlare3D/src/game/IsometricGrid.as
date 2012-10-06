@@ -43,7 +43,8 @@ package game
 		
 		private function createLine(xFrom:int , yFrom:int , xTo:int , yTo:int):void{
 			var line:Lines3D = new Lines3D();
-			line.lineStyle(1,0xcccccc,0.1);
+			line.lineStyle(0.5,0xA7C847,0.001);
+			
 			var point:Vector3D = getDown(false);
 			
 			var startPointX:int = point.x
@@ -56,8 +57,5 @@ package game
 		}
 		
 		
-/*		public function getGridData(vector3D:Vector3D):Array{
-			return[Math.floor(vector3D.x/cellSize),Math.floor(vector3D.y/cellSize)];
-		}
-*/	}
+	}
 }

@@ -21,6 +21,7 @@ package game.controller
 			DragManager._onMouse = gridEntity;
 			IsometricGame.plane.addEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);
 			IsometricGame.plane.addEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
+			IsometricGame.isometricGrid.visible = true;
 		}
 		
 		protected static function _mouseMove(event:MouseEvent3D):void
@@ -40,6 +41,8 @@ package game.controller
 				IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
 				IsometricGame.addObject(_onMouse,true);
 				_onMouse = null;
+				IsometricGame.isometricGrid.visible = false;
+				
 			}
 			
 		}

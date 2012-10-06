@@ -96,6 +96,7 @@ package game
 			plane.parent.x = plane.parent.x + (-changeV.x);
 			plane.parent.y = plane.parent.y + (-changeV.y);
 			
+			trace(plane.parent.x,plane.parent.y)
 			regX = event.info.point.x;
 			regY = event.info.point.y;
 			regV = event.info.point;
@@ -126,26 +127,22 @@ package game
 		private static var level1XMove:int = 480;
 		private static var level1YMove:int = 480;
 		
-		private static var level2FieldView:int = 27;
+		public static var level2FieldView:int = 27;
 		private static var level2Camera:int = -60;
 		private static var level2XMove:int = 0;
 		private static var level2YMove:int = 0;
 		
 		
-		private static var level3FieldView:int = 23;
+		
+		private static var level3FieldView:int = 19;
 		private static var level3Camera:int = -60;
 		private static var level3XMove:int = 0;
 		private static var level3YMove:int = 0;
 		
-		private static var level4FieldView:int = 19;
+		private static var level4FieldView:int = 15;
 		private static var level4Camera:int = -60;
 		private static var level4XMove:int = 0;
 		private static var level4YMove:int = 0;
-		
-		private static var level5FieldView:int = 15;
-		private static var level5Camera:int = -60;
-		private static var level5XMove:int = 0;
-		private static var level5YMove:int = 0;
 		
 		
 		
@@ -153,7 +150,7 @@ package game
 		{
 			var temp : int  = event.delta;
 			if(!canZoom)return;
-			trace(currentZoom)
+			
 			if(temp < 1 ){
 				if(currentZoom > 1){
 					currentZoom = currentZoom -1;
@@ -164,7 +161,7 @@ package game
 			
 			
 			if(temp > 1 ){
-				if(currentZoom < 5){
+				if(currentZoom < 4){
 					currentZoom = currentZoom + 1;
 					syncCamera(1);
 					canZoom = false;
