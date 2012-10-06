@@ -96,7 +96,7 @@ package game
 			plane.parent.x = plane.parent.x + (-changeV.x);
 			plane.parent.y = plane.parent.y + (-changeV.y);
 			
-			trace(plane.parent.x,plane.parent.y)
+			//trace(plane.parent.x,plane.parent.y)
 			regX = event.info.point.x;
 			regY = event.info.point.y;
 			regV = event.info.point;
