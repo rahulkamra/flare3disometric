@@ -18,6 +18,7 @@ package game
 	import flare.materials.Shader3D;
 	import flare.materials.filters.TextureFilter;
 	import flare.primitives.Plane;
+	import flare.primitives.SkyBox;
 	import flare.utils.Vector3DUtils;
 	
 	import flash.display.Bitmap;
@@ -68,9 +69,9 @@ package game
 			_stage  = stage;
 			scene = new Scene3D(this);
 			
-			IsometricController.init(scene);
+			//IsometricController.init(scene);
 			
-			scene.camera.zoom = 0.4;
+			//scene.camera.zoom = 0.4;
 			
 			initWorld();
 			AnimationLoader.Instance.loadAnimations(scene);
@@ -88,10 +89,24 @@ package game
 			// TODO Auto Generated method stub
 			wrapperPlane = new Plane();
 			scene.addChild(wrapperPlane);			
+			addSky();
 			addMap();
-			addGrid();
+			//addGrid();
+			//addChar();
 			CameraInteraction.init(_stage,scene,plane);
 		}		
+		
+		private function addSky():void
+		{
+			// TODO Auto Generated method stub
+			//var sky:SkyBox = new SkyBox( "assets/sky/tera_general_background_small_sky-3.f3d", SkyBox.HORIZONTAL_CROSS, scene );
+			
+			var pivot3D:Pivot3D = IsometricGame.scene.addChildFromFile("assets/sky/tera_general_background_small_sky-3.f3d") as Pivot3D;
+			
+			pivot3D.setScale(1000,1000,1000);
+				
+		//	plane.addChild( pivot3D );
+		}
 		
 		protected function _enterFrame(event:Event):void
 		{
@@ -114,7 +129,6 @@ package game
 			plane.y = bitmap.width/2;
 			wrapperPlane.addChild(plane);
 			
-			addChar();
 		}
 		
 		private function addChar():void

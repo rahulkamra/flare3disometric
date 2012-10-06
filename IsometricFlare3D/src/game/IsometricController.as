@@ -21,11 +21,10 @@ package game
 		public static function init(scene:Scene3D):void{
 			_scene3D = scene;
 			scene.camera = new Camera3D( "myOwnCamera" );
-			scene.camera.setPosition( 0, 0, -500);
+			scene.camera.setPosition( 0, 0, -1000);
 			scene.camera.lookAt( -1024, -1024, -1);
-			
 			scene.camera.setRotation(-45,0,-45);
-			scene.camera.fieldOfView = 1;
+			scene.camera.fieldOfView = 30;
 			
 		}
 		
