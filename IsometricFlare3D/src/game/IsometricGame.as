@@ -70,7 +70,6 @@ package game
 			scene = new Scene3D(this);
 			scene.setLayerSortMode( 10, Scene3D.SORT_BACK_TO_FRONT );
 			IsometricController.init(scene);
-			
 			initWorld();
 			AnimationLoader.Instance.loadAnimations(scene);
 		}
@@ -93,7 +92,18 @@ package game
 			
 			addSkybox();
 			CameraInteraction.init(_stage,scene,plane);
+			initSettings();
 		}		
+		
+		private function initSettings():void
+		{
+			// TODO Auto Generated method stub
+			CameraInteraction.cameraX = 163 
+			CameraInteraction.cameraY = 172;
+			
+			scene.camera.fieldOfView = CameraInteraction.level2FieldView
+				
+		}
 		
 		private function addSkybox():void
 		{
@@ -128,7 +138,7 @@ package game
 		{
 			// TODO Auto Generated method stub
 			char = new SmurfCharacter(GridEntityMapping.MALE_CHAR);
-			char.setPositionByGrid(rows/2-20,cols/2-20);
+			char.setPositionByGrid(rows/2,cols/2);
 			addObject(char);
 		}
 		
