@@ -1,5 +1,7 @@
 package game
 {
+	import caurina.transitions.Tweener;
+	
 	import com.electron.engine.debug.log;
 	
 	import flare.basic.Scene3D;
@@ -115,24 +117,54 @@ package game
 			regV = event.info.point;
 		}	
 		
+		
+		private static var currentZoom:int = 3;
+		
+		private static var level1FieldView:int = 25;
+		private static var level1Camera:int = -60;
+		
+		private static var level2FieldView:int = 19;
+		private static var level2Camera:int = -45;
+		
+		private static var level3FieldView:int = 16;
+		private static var level3Camera:int = -45;
+		
+		private static var level4FieldView:int = 13;
+		private static var level4Camera:int = -45;
+		
+		private static var level5FieldView:int = 10;
+		private static var level5Camera:int = -45;
+		
+		
+		
 		protected static function _mouseWheel(event:MouseEvent):void
 		{
 			var temp : int  = event.delta;
-			
+				 
 			if(temp < 1 ){
-				if(scene.camera.fieldOfView < 25){
-					scene.camera.fieldOfView ++;
-					scene.camera.setRotation(-45-scene.camera.fieldOfView,0,-45);
+				if(currentZoom > 1){
+					currentZoom = currentZoom -1;
+					syncCamera();
 				}
 			}
 			
+			
 			if(temp > 1 ){
-				if(scene.camera.fieldOfView > 10){
-					scene.camera.fieldOfView --;
-					scene.camera.setRotation(-45-scene.camera.fieldOfView,0,-45);
+				if(currentZoom < 5){
+					currentZoom = currentZoom + 1;
+					syncCamera();
 				}
-				
-			}	
+			}
+		}
+		
+		private static function syncCamera():void
+		{
+			var toFieldView:int = CameraInteraction["level"+currentZoom+"FieldView"];
+			var toCameraRotation:int = CameraInteraction["level"+currentZoom+"Camera"];
+			
+			Tweener.addTween(scene.camera,{fieldOfView:toFieldView, time:1, transition:"linear"});
+			Tweener.addTween(IsometricController,{cameraRotation:toCameraRotation, time:1, transition:"linear"});
+			
 		}
 		
 	}
