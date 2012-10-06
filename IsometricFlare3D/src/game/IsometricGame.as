@@ -68,7 +68,7 @@ package game
 		{
 			_stage  = stage;
 			scene = new Scene3D(this);
-			
+			scene.setLayerSortMode( 10, Scene3D.SORT_BACK_TO_FRONT );
 			IsometricController.init(scene);
 			
 			initWorld();
