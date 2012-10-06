@@ -18,6 +18,7 @@
 				Input3D.enableEventPhase = false;
 				test = new Test30_Flare3DLoader2(stage); 
 				stage.addChild(test); 
+				stage.addEventListener(Event.RESIZE,_resize);
 				
 			}
 			
@@ -82,6 +83,15 @@
 			
 			public function sync():void{
 				test.scene.camera.lookAt(hslLookX.value,hslLookY.value,hslLookZ.value);
+			}
+			
+			protected function _resize(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				if(test.scene){
+					test.scene.setViewport(0,0,stage.stageWidth,stage.stageHeight);
+					
+				}
 			}
 			
 		]]>

@@ -22,13 +22,13 @@ package game
 			this.cols = cols;
 			this.cellSize = cellSize;
 			make2DGrid();
+			visible = false;
 			mouseEnabled = false;
 		}
 		
 		private function make2DGrid():void{
 			var startX:int = 0;
 			var startY:int = 0;
-			
 			
 			for(var row:int  = 0 ;row<= rows ; row++ ){
 				createLine(0,row*cellSize,rows*cellSize,row*cellSize)
@@ -43,6 +43,7 @@ package game
 		
 		private function createLine(xFrom:int , yFrom:int , xTo:int , yTo:int):void{
 			var line:Lines3D = new Lines3D();
+			line.lineStyle(1,0xcccccc,0.1);
 			var point:Vector3D = getDown(false);
 			
 			var startPointX:int = point.x

@@ -18,6 +18,7 @@
 			
 			import game.IsometricController;
 			import game.IsometricGame;
+			import game.IsometricGrid;
 			import game.controller.DragManager;
 			import game.entity.GridEntity;
 			import game.pathfinding.Tile;
@@ -27,7 +28,7 @@
 			
 			private var test:game.IsometricGame;
 			
-			[Embed(source='Map.jpg')]
+			[Embed(source='Map1.png')]
 			public static var Map:Class;
 			
 			
@@ -39,6 +40,7 @@
 				Input3D.enableEventPhase = false;
 				test = new game.IsometricGame(stage);
 				stage.addChild(test);
+				stage.addEventListener(Event.RESIZE,_resize);
 			}
 			
 			
@@ -76,6 +78,23 @@
 				DragManager.addDrag(gridEntity);
 			}
 			
+			protected function _resize(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				if(IsometricGame.scene){
+					IsometricGame.scene.setViewport(0,0,stage.stageWidth,stage.stageHeight);
+					
+				}
+			}
+			
+			protected function toggleGrid(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				if(IsometricGame.isometricGrid){
+					IsometricGame.isometricGrid.visible = ! IsometricGame.isometricGrid.visible; 
+					
+				}
+			}
 			
 		]]>
 	</fx:Script>
@@ -85,5 +104,6 @@
 	<s:Button x="33" y="322" label="KitchenWood" click="addKitchenWoodHouse(event)"/>
 	<s:Button x="33" y="363" label="MarketStall" click="addMarketStall(event)"/>
 	<s:Button x="33" y="396" label="FeedMaker" click="addFeedMaker(event)"/>
+	<s:Button x="34" y="431" label="Toggle Grid" click="toggleGrid(event)"/>
 	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
 </s:Application>

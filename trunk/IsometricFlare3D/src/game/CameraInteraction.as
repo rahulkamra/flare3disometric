@@ -40,6 +40,7 @@ package game
 		private static var plane:Plane  =null;
 		
 		private static var justDragged:Boolean  =false;
+		private static var canZoom:Boolean  =true;
 		
 		
 		
@@ -98,9 +99,6 @@ package game
 			regX = event.info.point.x;
 			regY = event.info.point.y;
 			regV = event.info.point;
-			trace("plane.parent.x",plane.parent.x);
-			trace("plane.parent.y",plane.parent.y);
-			
 		}  
 		
 		protected static function _mouseUp(event:MouseEvent3D):void
@@ -123,28 +121,28 @@ package game
 		
 		private static var currentZoom:int = 3;
 		
-		private static var level1FieldView:int = 25;
+		private static var level1FieldView:int = 31;
 		private static var level1Camera:int = -60;
 		private static var level1XMove:int = 480;
 		private static var level1YMove:int = 480;
 		
-		private static var level2FieldView:int = 19;
+		private static var level2FieldView:int = 27;
 		private static var level2Camera:int = -45;
 		private static var level2XMove:int = 0;
 		private static var level2YMove:int = 0;
 		
 		
-		private static var level3FieldView:int = 16;
+		private static var level3FieldView:int = 23;
 		private static var level3Camera:int = -45;
 		private static var level3XMove:int = 0;
 		private static var level3YMove:int = 0;
 		
-		private static var level4FieldView:int = 13;
+		private static var level4FieldView:int = 19;
 		private static var level4Camera:int = -45;
 		private static var level4XMove:int = 0;
 		private static var level4YMove:int = 0;
 		
-		private static var level5FieldView:int = 10;
+		private static var level5FieldView:int = 15;
 		private static var level5Camera:int = -45;
 		private static var level5XMove:int = 0;
 		private static var level5YMove:int = 0;
@@ -154,11 +152,13 @@ package game
 		protected static function _mouseWheel(event:MouseEvent):void
 		{
 			var temp : int  = event.delta;
-			
+			if(!canZoom)return;
+			trace(currentZoom)
 			if(temp < 1 ){
 				if(currentZoom > 1){
 					currentZoom = currentZoom -1;
 					syncCamera(-1);
+					canZoom = false;
 				}
 			}
 			
@@ -167,6 +167,7 @@ package game
 				if(currentZoom < 5){
 					currentZoom = currentZoom + 1;
 					syncCamera(1);
+					canZoom = false;
 				}
 			}
 		}
@@ -208,9 +209,13 @@ package game
 			Tweener.addTween(scene.camera,{fieldOfView:toFieldView, time:0.5, transition:"linear"});
 			Tweener.addTween(IsometricController,{cameraRotation:toCameraRotation, time:0.5, transition:"linear"});
 			
-			Tweener.addTween(CameraInteraction,{cameraX:cameraX+xMove, time:0.5, transition:"linear"});
-			Tweener.addTween(CameraInteraction,{cameraY:cameraY+yMove, time:0.5, transition:"linear"});
+			Tweener.addTween(CameraInteraction,{cameraX:cameraX+xMove, time:0.5, transition:"linear",onComplete:zoomDone});
+			Tweener.addTween(CameraInteraction,{cameraY:cameraY+yMove, time:0.5, transition:"linear",onComplete:zoomDone});
 			
+		}
+		
+		private static function zoomDone():void{
+			canZoom = true;
 		}
 		
 	}
