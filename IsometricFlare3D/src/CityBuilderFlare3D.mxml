@@ -88,14 +88,6 @@
 				}
 			}
 			
-			protected function toggleGrid(event:Event):void
-			{
-				// TODO Auto-generated method stub
-				if(IsometricGame.isometricGrid){
-					IsometricGame.isometricGrid.visible = ! IsometricGame.isometricGrid.visible; 
-					
-				}
-			}
 			
 		]]>
 	</fx:Script>
@@ -105,6 +97,4 @@
 	<s:Button x="33" y="322" label="KitchenWood" click="addKitchenWoodHouse(event)"/>
 	<s:Button x="33" y="363" label="MarketStall" click="addMarketStall(event)"/>
 	<s:Button x="33" y="396" label="FeedMaker" click="addFeedMaker(event)"/>
-	<s:Button x="34" y="431" label="Toggle Grid" click="toggleGrid(event)"/>
-	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
 </s:Application>

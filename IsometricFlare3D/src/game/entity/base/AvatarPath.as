@@ -11,7 +11,7 @@ package game.entity.base
 		}
 		
 		override public function get normalTime():Number{
-			return 0.4;
+			return 0.2;
 		}
 		public function get avatar():SmurfCharacter{
 			return character as SmurfCharacter
