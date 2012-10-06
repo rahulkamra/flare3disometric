@@ -2,6 +2,7 @@ package game.entity
 {
 	import flare.core.Mesh3D;
 	import flare.core.Pivot3D;
+	import flare.loaders.Flare3DLoader1;
 	
 	import flash.events.Event;
 	import flash.geom.Vector3D;
@@ -15,29 +16,64 @@ package game.entity
 	public class GridEntity 
 	{
 		public var pivot3D:Pivot3D
+		public var asset3D:Pivot3D
 		public var gridEntityVO:GridEntityVO
 		public var scale:Boolean = true;
+
+		private var blueRing:Pivot3D;
 		
 		
 		public function GridEntity(gridEntityVO:GridEntityVO)
 		{
+			pivot3D = new Pivot3D();
 			this.gridEntityVO = gridEntityVO;
-			pivot3D = IsometricGame.scene.addChildFromFile(gridEntityVO.url) as Pivot3D;
+			
+			asset3D  = IsometricGame.scene.addChildFromFile(gridEntityVO.url) as Pivot3D;
+			
 			pivot3D.setRotation(-90,0,0);
-			pivot3D.rotateY(gridEntityVO.rotation);
-			pivot3D.setScale(gridEntityVO.scale,gridEntityVO.scale,gridEntityVO.scale); 
+			asset3D.rotateY(gridEntityVO.rotation);
+			asset3D.setScale(gridEntityVO.scale,gridEntityVO.scale,gridEntityVO.scale);
+			
+			
 			if(gridEntityVO.baseid.length>0)
 			{
 				for each(var idToHide:int in gridEntityVO.baseid)
 				{
-					pivot3D.children[idToHide].visible = false;	
+					asset3D.children[idToHide].visible = false;	
 				}
 			}
+			
+			
+			blueRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.RING) as Pivot3D;
+			blueRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
+			blueRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
+			blueRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
+			
+			
+			pivot3D.addChild(blueRing);
+			pivot3D.addChild(asset3D);
+			
+			
 			if(gridEntityVO.url == GridEntityMapping.TREE_1.url || gridEntityVO.url == GridEntityMapping.TREE_2.url || gridEntityVO.url == GridEntityMapping.TREE_3.url || gridEntityVO.url == GridEntityMapping.TREE_4.url){
-				pivot3D.stop();
+				asset3D.stop();
+				pivot3D.setLayer(10);
 			}else{
-				pivot3D.play();
+				asset3D.play();
 			}
+			
+			
+			blueRing.visible = false;
+		}
+		
+		public function showCollision():void{
+		}
+		
+		public function showNotCollision():void{
+			blueRing.visible = true;
+		}
+		
+		public function showNormal():void{
+			
 		}
 		
 		public function setVector(vector3D:Vector3D):void{

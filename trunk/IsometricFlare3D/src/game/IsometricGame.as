@@ -51,7 +51,7 @@ package game
 		
 		public static var debugPlane:Plane;
 		
-		public static var cellSize:int = 16;;
+		public static var cellSize:int = 16;
 		public static var rows:int;
 		public static var cols:int;
 		
