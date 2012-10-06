@@ -22,6 +22,13 @@ package game.controller
 			IsometricGame.plane.addEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);
 			IsometricGame.plane.addEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
 			IsometricGame.isometricGrid.visible = true;
+			
+			if(IsometricGame.canPlace(_onMouse)){
+				_onMouse.showNotCollision();
+			}else{
+				_onMouse.showCollision();
+			}
+			
 		}
 		
 		protected static function _mouseMove(event:MouseEvent3D):void
@@ -30,7 +37,11 @@ package game.controller
 			var gridPoint:Array = IsometricController.planeToGrid(localPoint);
 			var planeCoordinates:Vector3D = IsometricController.gridToPlane(gridPoint[0],gridPoint[1]);
 			_onMouse.setVector(planeCoordinates);	
-			
+			if(IsometricGame.canPlace(_onMouse)){
+				_onMouse.showNotCollision();
+			}else{
+				_onMouse.showCollision();
+			}
 			
 		}
 		
@@ -40,9 +51,9 @@ package game.controller
 				IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_DOWN,_mouseDown);
 				IsometricGame.plane.removeEventListener(MouseEvent3D.MOUSE_MOVE,_mouseMove);
 				IsometricGame.addObject(_onMouse,true);
-				_onMouse = null;
 				IsometricGame.isometricGrid.visible = false;
-				
+				_onMouse.showNormal();
+				_onMouse = null;
 			}
 			
 		}

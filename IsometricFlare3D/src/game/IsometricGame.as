@@ -259,15 +259,19 @@ package game
 		}
 		
 		public static function canPlace(gridEntity:GridEntity):Boolean{
-			
-			for(var row:int = 0 ; row < gridEntity.gridEntityVO.rows ; row++){
-				for(var col:int = 0 ; col < gridEntity.gridEntityVO.cols ; col++){
-					if(gridArray[gridEntity.row+row][gridEntity.col+col] == 1){
-						return false;
+			try{
+				for(var row:int = 0 ; row < gridEntity.gridEntityVO.rows ; row++){
+					for(var col:int = 0 ; col < gridEntity.gridEntityVO.cols ; col++){
+						if(gridArray[gridEntity.row+row][gridEntity.col+col] == 1){
+							return false;
+						}
 					}
 				}
+				return true;
+			}catch(e:Error){
+				return false;
 			}
-			return true;
+			return false
 		}
 		
 		

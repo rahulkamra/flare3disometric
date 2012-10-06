@@ -27,7 +27,9 @@ package game.settings
 		public static const MALE_TURN_RIGHT:String = "assets/male/avatar_male_anim_turn_left-8.f3d"
 			
 			
-		public static const RING:String = "assets/ring/ring.f3d"
+		public static const BLUE_RING:String = "assets/ring/ring.f3d"
+		public static const RED_RING:String = "assets/ring/redring.f3d"
+			
 		
 	}
 }

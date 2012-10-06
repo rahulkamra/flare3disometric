@@ -21,6 +21,7 @@ package game.entity
 		public var scale:Boolean = true;
 
 		private var blueRing:Pivot3D;
+		private var redRing:Pivot3D;
 		
 		
 		public function GridEntity(gridEntityVO:GridEntityVO)
@@ -44,13 +45,20 @@ package game.entity
 			}
 			
 			
-			blueRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.RING) as Pivot3D;
+			blueRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.BLUE_RING) as Pivot3D;
 			blueRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
 			blueRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
 			blueRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
 			
+			redRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.RED_RING) as Pivot3D;
+			redRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
+			redRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
+			redRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
+			
+			
 			
 			pivot3D.addChild(blueRing);
+			pivot3D.addChild(redRing);
 			pivot3D.addChild(asset3D);
 			
 			
@@ -63,17 +71,23 @@ package game.entity
 			
 			
 			blueRing.visible = false;
+			redRing.visible = false;
 		}
 		
 		public function showCollision():void{
+			redRing.visible = true;
+			blueRing.visible = false;
+			
 		}
 		
 		public function showNotCollision():void{
 			blueRing.visible = true;
+			redRing.visible = true;
 		}
 		
 		public function showNormal():void{
-			
+			blueRing.visible = false;
+			redRing.visible = false;
 		}
 		
 		public function setVector(vector3D:Vector3D):void{

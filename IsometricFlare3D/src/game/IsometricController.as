@@ -24,7 +24,6 @@ package game
 			scene.camera.setPosition( 0, 0, -1000);
 			scene.camera.lookAt( 0, 0, -1);
 			scene.camera.far = 5000;
-			
 			cameraRotation = -60;
 		}
 		
