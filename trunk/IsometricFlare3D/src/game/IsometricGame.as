@@ -90,27 +90,9 @@ package game
 			addMap();
 			addGrid();
 			addChar();
-			addSky();
 			
 			CameraInteraction.init(_stage,scene,plane);
 		}		
-		
-		private function addSky():void
-		{
-			// TODO Auto Generated method stub
-			//var sky:SkyBox = new SkyBox( "assets/sky/tera_general_background_small_sky-3.f3d", SkyBox.HORIZONTAL_CROSS, scene );
-			
-			var pivot3D:Pivot3D = IsometricGame.scene.addChildFromFile("assets/sky/tera_general_background_small_sky-3.f3d") as Pivot3D;
-			
-			pivot3D.setRotation(90,180,90);
-			plane.addChild(pivot3D);
-			//pivot3D.setScale(0.6,0.6,0.6);
-			pivot3D.z = 0;
-			pivot3D.x = -1000;
-			pivot3D.y = -1000
-			
-			
-		}
 		
 		protected function _enterFrame(event:Event):void
 		{
@@ -139,7 +121,7 @@ package game
 		{
 			// TODO Auto Generated method stub
 			char = new SmurfCharacter(GridEntityMapping.MALE_CHAR);
-			char.setPositionByGrid(0,0);
+			char.setPositionByGrid(rows/2-20,cols/2-20);
 			addObject(char);
 		}
 		
