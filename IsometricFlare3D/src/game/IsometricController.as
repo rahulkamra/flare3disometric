@@ -25,12 +25,19 @@ package game
 			scene.camera.setPosition( 0, 0, -1000);
 			scene.camera.lookAt( 0, 0, -1);
 			
-			scene.camera.setRotation(-45,0,-45);
+			cameraRotation = -45;
 
 			scene.camera.fieldOfView = 10;
 			
 		}
 		
+		public static function set cameraRotation(data:Number):void{
+			_scene3D.camera.setRotation(data,0,-45);
+		}
+		
+		public static function get cameraRotation():Number{
+			return _scene3D.camera.getRotation().x
+		}
 		
 		public static function screenToWorld(screenX:int,screenY:int):Vector3D{
 			var ray:RayCollision = new RayCollision();
