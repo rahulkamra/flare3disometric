@@ -59,7 +59,7 @@ package game
 		public static var aStartGrid:Grid;
 		
 		public static var char:SmurfCharacter;
-
+		
 		public static var isometricGrid:IsometricGrid;
 		
 		
@@ -69,9 +69,7 @@ package game
 			_stage  = stage;
 			scene = new Scene3D(this);
 			
-			//IsometricController.init(scene);
-			
-			//scene.camera.zoom = 0.4;
+			IsometricController.init(scene);
 			
 			initWorld();
 			AnimationLoader.Instance.loadAnimations(scene);
@@ -89,10 +87,11 @@ package game
 			// TODO Auto Generated method stub
 			wrapperPlane = new Plane();
 			scene.addChild(wrapperPlane);			
-			addSky();
 			addMap();
-			//addGrid();
-			//addChar();
+			addGrid();
+			addChar();
+			addSky();
+			
 			CameraInteraction.init(_stage,scene,plane);
 		}		
 		
@@ -103,9 +102,14 @@ package game
 			
 			var pivot3D:Pivot3D = IsometricGame.scene.addChildFromFile("assets/sky/tera_general_background_small_sky-3.f3d") as Pivot3D;
 			
-			//pivot3D.setScale(1000,1000,1000);
-				
-		//	plane.addChild( pivot3D );
+			pivot3D.setRotation(90,180,90);
+			plane.addChild(pivot3D);
+			//pivot3D.setScale(0.6,0.6,0.6);
+			pivot3D.z = 0;
+			pivot3D.x = -1000;
+			pivot3D.y = -1000
+			
+			
 		}
 		
 		protected function _enterFrame(event:Event):void
@@ -169,7 +173,7 @@ package game
 		public static function getNodeAt(row:int,col:int):Node{
 			return aStartGrid.getNode(row,col)
 		}
-			
+		
 		
 		
 		public static function addObject(gridEntity:GridEntity,populateValue:Boolean = false):void
