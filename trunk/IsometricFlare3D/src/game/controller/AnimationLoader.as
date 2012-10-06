@@ -99,7 +99,8 @@ package game.controller
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.FEED_MAKER.url));
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.KITCHEN_WOOD_HOUSE.url));
 			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.MARKET_STALL.url));
-			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.RING));
+			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.BLUE_RING));
+			pivotToRemove.push(scene.addChildFromFile(GridEntityMapping.RED_RING));
 		}
 		
 		public function treePreloadingComplete(event:Event):void{

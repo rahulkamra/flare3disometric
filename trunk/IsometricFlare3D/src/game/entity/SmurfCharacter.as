@@ -36,15 +36,6 @@ package game.entity
 		
 		public function turnToTile(tile:Tile):void{
 			pathDriver.currentDirection = pathDriver.calculateDirection(this.tile,tile);
-			/*if(tile.row > this.tile.row){
-			pathDriver.currentDirection = BasePath.BOTTOM_RIGHT;
-			}else if(tile.row < this.tile.row){
-			pathDriver.currentDirection = BasePath.TOP_LEFT;
-			}else if(tile.col > this.tile.col){
-			pathDriver.currentDirection = BasePath.BOTTOM_LEFT;
-			}else if(tile.col < this.tile.col){
-			pathDriver.currentDirection = BasePath.TOP_RIGHT;
-			}*/
 		}
 		
 		/**
