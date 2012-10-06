@@ -97,7 +97,21 @@ package
 			]
 			});
 			
+			ac.addItem({name:'tree1' , url:'assets/trees/tree1.f3d',animation : [
+			]
+			});
 			
+			ac.addItem({name:'tree2' , url:'assets/trees/tree2.f3d',animation : [
+			]
+			});
+			
+			ac.addItem({name:'tree3' , url:'assets/trees/tree3.f3d',animation : [
+			]
+			});
+			
+			ac.addItem({name:'tree4' , url:'assets/trees/tree4.f3d',animation : [
+			]
+			});
 			
 			return ac;
 		}
