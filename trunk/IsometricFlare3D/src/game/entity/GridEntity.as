@@ -27,8 +27,10 @@ package game.entity
 			pivot3D.rotateY(gridEntityVO.rotation);
 			pivot3D.setScale(gridEntityVO.scale,gridEntityVO.scale,gridEntityVO.scale); 
 			
+			
 			if(gridEntityVO.url == GridEntityMapping.TREE_1.url || gridEntityVO.url == GridEntityMapping.TREE_2.url || gridEntityVO.url == GridEntityMapping.TREE_3.url || gridEntityVO.url == GridEntityMapping.TREE_4.url){
 				pivot3D.stop();
+				pivot3D.setLayer(10);
 			}else{
 				pivot3D.play();
 			}
