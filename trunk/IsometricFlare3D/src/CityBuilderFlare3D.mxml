@@ -5,6 +5,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.electron.engine.debug.Stats;
+			import com.electron.engine.util.Utils;
 			
 			import flare.basic.Viewer3D;
 			import flare.collisions.RayCollision;
@@ -72,10 +73,10 @@
 			
 			public function addFeedMaker(event:MouseEvent):void{
 				
-				gridEntity = new GridEntity(GridEntityMapping.FEED_MAKER);
+				 gridEntity = new GridEntity(GridEntityMapping.FEED_MAKER);
 				IsometricGame.addObject(gridEntity);
 				gridEntity.setPositionByGrid(0,0);
-				DragManager.addDrag(gridEntity);
+				DragManager.addDrag(gridEntity); 
 			}
 			
 			protected function _resize(event:Event):void
