@@ -42,6 +42,7 @@ package game
 		private static var justDragged:Boolean  =false;
 		
 		
+		
 		public static function init(stage:Stage,scene:Scene3D,plane:Plane):void{
 			CameraInteraction.scene = scene;
 			CameraInteraction.stage = stage;
@@ -90,13 +91,15 @@ package game
 			if(Math.abs(changeV.x) > 10 || Math.abs(changeV.y) > 10){
 				justDragged = true;
 			}
-			plane.parent.translateX(-changeV.x);
-			plane.parent.translateY(-changeV.y);
+			
+			plane.parent.x = plane.parent.x + (-changeV.x);
+			plane.parent.y = plane.parent.y + (-changeV.y);
 			
 			regX = event.info.point.x;
 			regY = event.info.point.y;
 			regV = event.info.point;
-			
+			trace("plane.parent.x",plane.parent.x);
+			trace("plane.parent.y",plane.parent.y);
 			
 		}  
 		
@@ -122,29 +125,40 @@ package game
 		
 		private static var level1FieldView:int = 25;
 		private static var level1Camera:int = -60;
+		private static var level1XMove:int = 480;
+		private static var level1YMove:int = 480;
 		
 		private static var level2FieldView:int = 19;
 		private static var level2Camera:int = -45;
+		private static var level2XMove:int = 0;
+		private static var level2YMove:int = 0;
+		
 		
 		private static var level3FieldView:int = 16;
 		private static var level3Camera:int = -45;
+		private static var level3XMove:int = 0;
+		private static var level3YMove:int = 0;
 		
 		private static var level4FieldView:int = 13;
 		private static var level4Camera:int = -45;
+		private static var level4XMove:int = 0;
+		private static var level4YMove:int = 0;
 		
 		private static var level5FieldView:int = 10;
 		private static var level5Camera:int = -45;
+		private static var level5XMove:int = 0;
+		private static var level5YMove:int = 0;
 		
 		
 		
 		protected static function _mouseWheel(event:MouseEvent):void
 		{
 			var temp : int  = event.delta;
-				 
+			
 			if(temp < 1 ){
 				if(currentZoom > 1){
 					currentZoom = currentZoom -1;
-					syncCamera();
+					syncCamera(-1);
 				}
 			}
 			
@@ -152,18 +166,50 @@ package game
 			if(temp > 1 ){
 				if(currentZoom < 5){
 					currentZoom = currentZoom + 1;
-					syncCamera();
+					syncCamera(1);
 				}
 			}
 		}
 		
-		private static function syncCamera():void
+		
+		public static function get cameraX():int
+		{
+			return plane.parent.x
+		}
+		
+		public static function set cameraX(value:int):void
+		{
+			plane.parent.x = value;
+		}
+		
+		public static function get cameraY():int
+		{
+			return plane.parent.y;
+		}
+		
+		public static function set cameraY(value:int):void
+		{
+			plane.parent.y = value;
+		}
+		
+		private static function syncCamera(delta:int):void
 		{
 			var toFieldView:int = CameraInteraction["level"+currentZoom+"FieldView"];
 			var toCameraRotation:int = CameraInteraction["level"+currentZoom+"Camera"];
 			
+			var xMove:int = CameraInteraction["level"+currentZoom+"XMove"];
+			var yMove:int = CameraInteraction["level"+currentZoom+"YMove"];
+			
+			if(currentZoom == 2 && delta == 1){
+				xMove = -  CameraInteraction["level"+(currentZoom-1)+"XMove"];
+				yMove =  - CameraInteraction["level"+(currentZoom-1)+"YMove"];
+			}
+			
 			Tweener.addTween(scene.camera,{fieldOfView:toFieldView, time:0.5, transition:"linear"});
 			Tweener.addTween(IsometricController,{cameraRotation:toCameraRotation, time:0.5, transition:"linear"});
+			
+			Tweener.addTween(CameraInteraction,{cameraX:cameraX+xMove, time:0.5, transition:"linear"});
+			Tweener.addTween(CameraInteraction,{cameraY:cameraY+yMove, time:0.5, transition:"linear"});
 			
 		}
 		
