@@ -49,7 +49,7 @@ package game
 		
 		public static var wrapperPlane:Plane;
 		
-		private var debugPlane:Plane;
+		public static var debugPlane:Plane;
 		
 		public static var cellSize:int = 16;;
 		public static var rows:int;
