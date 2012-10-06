@@ -46,9 +46,10 @@ package game.controller
 			
 		}
 		
+		private var animationLoaded:Boolean = false;
 		protected function completeEvent(event:Event):void
 		{
-			return;
+			if(animationLoaded)return;
 			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, idleAnimation, SmurfCharacter.IDLE);
 			IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.IDLE, 1, 90) );
 			
@@ -65,6 +66,7 @@ package game.controller
 			trace( "IsometricGame.char.pivot3D.labels",IsometricGame.char.pivot3D.labels[SmurfCharacter.TURN_RIGHT])
 			
 			IsometricGame.char.showIdle();
+			animationLoaded = true;
 			
 		}
 	}

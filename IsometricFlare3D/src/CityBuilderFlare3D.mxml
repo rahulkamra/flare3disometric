@@ -48,16 +48,17 @@
 			
 			private var gridEntity:GridEntity;
 			
-			public function addKitchenWoodHouse():void{
+			public function addKitchenWoodHouse(event:MouseEvent):void{
 				
 				gridEntity = new GridEntity(GridEntityMapping.KITCHEN_WOOD_HOUSE);
 				IsometricGame.addObject(gridEntity);
 				gridEntity.setPositionByGrid(0,0);
 				DragManager.addDrag(gridEntity);
 				
+				
 			}
 			
-			public function addMarketStall():void{
+			public function addMarketStall(event:MouseEvent):void{
 				
 				gridEntity = new GridEntity(GridEntityMapping.MARKET_STALL);
 				IsometricGame.addObject(gridEntity);
@@ -67,31 +68,22 @@
 				
 			}
 			
-			public function addFeedMaker():void{
+			public function addFeedMaker(event:MouseEvent):void{
 				
 				gridEntity = new GridEntity(GridEntityMapping.FEED_MAKER);
 				IsometricGame.addObject(gridEntity);
 				gridEntity.setPositionByGrid(0,0);
 				DragManager.addDrag(gridEntity);
-				
 			}
 			
-			
-			
-			protected function moveAvatar(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				IsometricGame.scene.camera.zoom = 100;
-			}
 			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<s:Button x="33" y="322" label="KitchenWood" click="addKitchenWoodHouse()"/>
-	<s:Button x="33" y="363" label="MarketStall" click="addMarketStall()"/>
-	<s:Button x="33" y="396" label="FeedMaker" click="addFeedMaker()"/>
-	<s:Button x="33" y="429" label="Move" click="moveAvatar(event)"/>
+	<s:Button x="33" y="322" label="KitchenWood" click="addKitchenWoodHouse(event)"/>
+	<s:Button x="33" y="363" label="MarketStall" click="addMarketStall(event)"/>
+	<s:Button x="33" y="396" label="FeedMaker" click="addFeedMaker(event)"/>
 	<!--<s:Button x="850" y="539" label="Button" click="button1_clickHandler(event)"/>-->
 </s:Application>
