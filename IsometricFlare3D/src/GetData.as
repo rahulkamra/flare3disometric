@@ -113,6 +113,14 @@ package
 			]
 			});
 			
+			ac.addItem({name:'hk' , url:'assets/hk/hellknight.f3d',animation : [
+			]
+			});
+			
+			ac.addItem({name:'ring' , url:'assets/ring/ring.f3d',animation : [
+			]
+			});
+			
 			return ac;
 		}
 	}
