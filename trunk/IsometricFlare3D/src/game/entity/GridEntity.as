@@ -44,34 +44,35 @@ package game.entity
 				}
 			}
 			
+			if(gridEntityVO.url == GridEntityMapping.TREE_1.url || gridEntityVO.url == GridEntityMapping.TREE_2.url || gridEntityVO.url == GridEntityMapping.TREE_3.url || gridEntityVO.url == GridEntityMapping.TREE_4.url){
+				
+			}else{
+				blueRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.BLUE_RING) as Pivot3D;
+				blueRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
+				blueRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
+				blueRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
+				
+				redRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.RED_RING) as Pivot3D;
+				redRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
+				redRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
+				redRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
+				pivot3D.addChild(blueRing);
+				pivot3D.addChild(redRing);
+				blueRing.visible = false;
+				redRing.visible = false;
+			}
 			
-			blueRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.BLUE_RING) as Pivot3D;
-			blueRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
-			blueRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
-			blueRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
 			
-			redRing = IsometricGame.scene.addChildFromFile(GridEntityMapping.RED_RING) as Pivot3D;
-			redRing.scaleX = gridEntityVO.rows*IsometricGame.cellSize/64;
-			redRing.scaleZ = gridEntityVO.cols*IsometricGame.cellSize/64;
-			redRing.scaleY = gridEntityVO.cols*IsometricGame.cellSize/64;
-			
-			
-			
-			pivot3D.addChild(blueRing);
-			pivot3D.addChild(redRing);
 			pivot3D.addChild(asset3D);
-			
-			
 			if(gridEntityVO.url == GridEntityMapping.TREE_1.url || gridEntityVO.url == GridEntityMapping.TREE_2.url || gridEntityVO.url == GridEntityMapping.TREE_3.url || gridEntityVO.url == GridEntityMapping.TREE_4.url){
 				asset3D.stop();
+				
 				pivot3D.setLayer(10);
 			}else{
 				asset3D.play();
 			}
 			
 			
-			blueRing.visible = false;
-			redRing.visible = false;
 		}
 		
 		public function showCollision():void{
