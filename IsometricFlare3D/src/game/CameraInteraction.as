@@ -108,7 +108,7 @@ package game
 			var temp : int  = event.delta;
 			
 			if(temp < 1 ){
-				if(scene.camera.zoom < 1){
+				if(scene.camera.zoom < 70){
 					scene.camera.zoom = scene.camera.zoom + 0.2
 				}
 			}
