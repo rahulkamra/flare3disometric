@@ -162,8 +162,8 @@ package game
 			var toFieldView:int = CameraInteraction["level"+currentZoom+"FieldView"];
 			var toCameraRotation:int = CameraInteraction["level"+currentZoom+"Camera"];
 			
-			Tweener.addTween(scene.camera,{fieldOfView:toFieldView, time:1, transition:"linear"});
-			Tweener.addTween(IsometricController,{cameraRotation:toCameraRotation, time:1, transition:"linear"});
+			Tweener.addTween(scene.camera,{fieldOfView:toFieldView, time:0.5, transition:"linear"});
+			Tweener.addTween(IsometricController,{cameraRotation:toCameraRotation, time:0.5, transition:"linear"});
 			
 		}
 		
