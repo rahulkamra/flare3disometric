@@ -55,6 +55,8 @@ package
 				model.parent.removeChild(model);
 			}
 			model = scene.addChildFromFile(url);
+			
+			model.setScale(10,10,10);
 			scene.showLogo = false;
 		}
 		

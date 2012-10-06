@@ -48,6 +48,7 @@ package game.controller
 		
 		protected function completeEvent(event:Event):void
 		{
+			return;
 			Pivot3DUtils.appendAnimation( IsometricGame.char.pivot3D, idleAnimation, SmurfCharacter.IDLE);
 			IsometricGame.char.pivot3D.addLabel( new Label3D( SmurfCharacter.IDLE, 1, 90) );
 			
