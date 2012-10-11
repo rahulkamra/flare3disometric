@@ -49,9 +49,14 @@ package core
 			runningAnimation = new Flare3DLoader(  GameConstants.MALE_RUN );
 			Main.scene.library.push(runningAnimation);
 			
+			jumpingAnimation = new Flare3DLoader(  GameConstants.MALE_JUMP );
+			Main.scene.library.push(jumpingAnimation);
+			
 		}
 		
 		private var animationLoaded:Boolean = false;
+
+		private var jumpingAnimation:Flare3DLoader;
 		protected function animationComplete(event:Event):void
 		{	
 			
@@ -64,6 +69,8 @@ package core
 				Pivot3DUtils.appendAnimation( Main.char.char3D, runningAnimation, Character.RUN);
 				Main.char.char3D.addLabel( new Label3D( Character.RUN, 92, 107) );
 				
+				Pivot3DUtils.appendAnimation( Main.char.char3D, jumpingAnimation, Character.JUMP);
+				Main.char.char3D.addLabel( new Label3D( Character.JUMP, 109, 124) );
 				
 				/*Pivot3DUtils.appendAnimation( IsometricGame.char.asset3D, turnLeft, SmurfCharacter.TURN_LEFT);
 				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.TURN_LEFT, 109, 123) );
@@ -72,6 +79,8 @@ package core
 				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.TURN_RIGHT, 125, 139) );
 	
 				trace( "IsometricGame.char.pivot3D.labels",IsometricGame.char.asset3D.labels[SmurfCharacter.TURN_RIGHT])*/
+				
+				//trace( "IsometricGame.char.pivot3D.labels",Main.char.char3D.labels[Character.JUMP])
 				
 				Main.char.showIdle();
 				animationLoaded = true;
