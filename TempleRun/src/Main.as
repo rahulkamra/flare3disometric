@@ -6,6 +6,7 @@ package
 	import flare.basic.Scene3D;
 	import flare.basic.Viewer3D;
 	import flare.core.Camera3D;
+	import flare.primitives.Plane;
 	import flare.utils.Pivot3DUtils;
 	
 	import flash.display.Sprite;
@@ -23,9 +24,9 @@ package
 		public function Main(stage:Stage)
 		{
 			_stage  = stage;
-			scene = new Scene3D(this);
+			scene = new Viewer3D(this);
 			initChar();
-			
+			addGround();
 			scene.addEventListener( Scene3D.UPDATE_EVENT, updateEvent );
 			stage.addEventListener(Event.ENTER_FRAME,_enterFrame);
 			AnimationLoader.Instance.loadAnimations(scene);
@@ -33,6 +34,7 @@ package
 		
 		protected function updateEvent(event:Event):void
 		{
+			return;
 			Pivot3DUtils.setPositionWithReference( scene.camera, 0, 500, 800, char, 1 );
 			Pivot3DUtils.lookAtWithReference( scene.camera, 0, 100, 0, char );
 		}
@@ -49,6 +51,14 @@ package
 			
 		}
 		
+		private function addGround():void
+		{
+			var plane:Plane = new Plane("zzzz",3000,300);
+			plane.rotateZ(90);
+			plane.rotateY(270);
+			
+			scene.addChild(plane);
+		}
 		
 		private function initCamera():void
 		{
