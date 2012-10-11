@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" backgroundAlpha="0"  
+			   applicationComplete="application1_applicationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.electron.engine.debug.Stats;
+			
+			import flare.system.Input3D;
+			
+			import mx.events.FlexEvent;
+			
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				stage.addChild( new Stats() );
+				stage.frameRate  = 60;
+				Input3D.enableEventPhase = false;
+				var main:Main = new Main(stage);
+				stage.addChild(main);
+				stage.addEventListener(Event.RESIZE,_resize);
+			}
+			
+			
+			protected function _resize(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				if(Main.scene){
+					Main.scene.setViewport(0,0,stage.stageWidth,stage.stageHeight);
+					
+				}
+			}
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
