@@ -32,15 +32,13 @@ package
 		
 		protected function updateEvent(event:Event):void
 		{
-			Pivot3DUtils.setPositionWithReference( scene.camera, 0, 100, 1000, char, 0.025 );
-			
-			Pivot3DUtils.lookAtWithReference( scene.camera, 0, 0, 0, char );
+			Pivot3DUtils.setPositionWithReference( scene.camera, 0, 500, 800, char, 1 );
+			Pivot3DUtils.lookAtWithReference( scene.camera, 0, 100, 0, char );
 		}
 		
 		protected function _enterFrame(event:Event):void
 		{
-			//trace(scene.camera.getRotation());
-			//Pivot3DUtils.lookAtWithReference( scene.camera, 0, 0, 0, char, char.getDir(), 0.05 );
+			
 		}		
 		
 		private function initChar():void
