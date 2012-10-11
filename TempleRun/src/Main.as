@@ -1,5 +1,6 @@
 package
 {
+	import core.AnimationLoader;
 	import core.Character;
 	
 	import flare.basic.Scene3D;
@@ -11,13 +12,13 @@ package
 	import flash.display.Stage;
 	import flash.events.Event;
 	
+	
 	public class Main extends Sprite
 	{
 		
 		public static var scene:Scene3D;
 		private static var _stage:Stage
-
-		private var char:Character;
+		public static var char:Character;
 		
 		public function Main(stage:Stage)
 		{
@@ -25,9 +26,9 @@ package
 			scene = new Scene3D(this);
 			initChar();
 			
-			initCamera();
 			scene.addEventListener( Scene3D.UPDATE_EVENT, updateEvent );
 			stage.addEventListener(Event.ENTER_FRAME,_enterFrame);
+			AnimationLoader.Instance.loadAnimations(scene);
 		}
 		
 		protected function updateEvent(event:Event):void
@@ -51,7 +52,6 @@ package
 		
 		private function initCamera():void
 		{
-			Pivot3DUtils.setPositionWithReference( scene.camera, 0, 100, 200, char, 0.1 );
 			
 			/*scene.camera = new Camera3D( "myOwnCamera" );
 			scene.camera.setPosition( 0, 100, 200);

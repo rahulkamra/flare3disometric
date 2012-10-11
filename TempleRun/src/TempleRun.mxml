@@ -31,9 +31,17 @@
 					
 				}
 			}
+			
+			protected function run(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				Main.char.showRun();
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<s:Button x="32" y="410" label="Run" click="run(event)"/>
 </s:Application>
