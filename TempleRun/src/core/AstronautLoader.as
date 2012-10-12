@@ -20,8 +20,8 @@ package core
 		private var scene:Scene3D;
 		private var pivot3D:Pivot3D;
 		
-		public static function get Instance():AnimationLoader{
-			return SingletonManager.getInstance(AnimationLoader) as AnimationLoader
+		public static function get Instance():AstronautLoader{
+			return SingletonManager.getInstance(AstronautLoader) as AstronautLoader
 		}
 		
 		public function loadAnimations(scene:Scene3D):void{
@@ -40,9 +40,7 @@ package core
 			Main.char = new Character();
 			Main.char.addChild(pivot3D);
 			Main.char.char3D = pivot3D;
-			//Main.scene.addChild(Main.char);
-			
-			Main.addObject(Main.char.char3D);
+			Main.addObject(Main.char);
 		}
 	}
 }
