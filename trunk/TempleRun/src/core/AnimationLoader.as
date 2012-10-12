@@ -1,6 +1,7 @@
 package core
 {
 	import com.electron.engine.core.SingletonManager;
+	import com.electron.engine.debug.log;
 	
 	import constants.GameConstants;
 	
@@ -40,9 +41,12 @@ package core
 		private var scene:Scene3D
 		
 		public function loadAnimations(scene:Scene3D):void{
+			Flare3DLoader1;
 			this.scene = scene;
 			scene.addEventListener( Scene3D.COMPLETE_EVENT, animationComplete );
-			
+			pivot3D = Main.scene.addChildFromFile(GameConstants.ASTRONAUT) as Pivot3D;
+				
+			return;
 			idleAnimation = new Flare3DLoader(GameConstants.MALE_IDLE);
 			Main.scene.library.push(idleAnimation);
 			
@@ -57,12 +61,21 @@ package core
 		private var animationLoaded:Boolean = false;
 
 		private var jumpingAnimation:Flare3DLoader;
+
+		private var pivot3D:Pivot3D;
 		protected function animationComplete(event:Event):void
 		{	
 			
+			trace("Added",pivot3D);
 			scene.removeEventListener( Scene3D.COMPLETE_EVENT, animationComplete );
+			Main.char = new Character();
+			Main.char.addChild(pivot3D);
+			Main.char.char3D = pivot3D;
+			Main.scene.addChild(Main.char);
 			if(!animationLoaded){
-				Pivot3DUtils.appendAnimation( Main.char.char3D, idleAnimation, Character.IDLE);
+				
+				//Main.char.
+				/*Pivot3DUtils.appendAnimation( Main.char.char3D, idleAnimation, Character.IDLE);
 				Main.char.char3D.addLabel( new Label3D( Character.IDLE, 1, 90) );
 				
 				
@@ -70,7 +83,7 @@ package core
 				Main.char.char3D.addLabel( new Label3D( Character.RUN, 92, 107) );
 				
 				Pivot3DUtils.appendAnimation( Main.char.char3D, jumpingAnimation, Character.JUMP);
-				Main.char.char3D.addLabel( new Label3D( Character.JUMP, 109, 124) );
+				Main.char.char3D.addLabel( new Label3D( Character.JUMP, 109, 124) );*/
 				
 				/*Pivot3DUtils.appendAnimation( IsometricGame.char.asset3D, turnLeft, SmurfCharacter.TURN_LEFT);
 				IsometricGame.char.asset3D.addLabel( new Label3D( SmurfCharacter.TURN_LEFT, 109, 123) );
@@ -82,8 +95,8 @@ package core
 				
 				//trace( "IsometricGame.char.pivot3D.labels",Main.char.char3D.labels[Character.JUMP])
 				
-				Main.char.showIdle();
-				animationLoaded = true;
+				//Main.char.showIdle();
+				//animationLoaded = true;
 			}else{
 				trace("this is not possible");
 			}
