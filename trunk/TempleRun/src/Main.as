@@ -36,9 +36,10 @@ package
 			//initChar();
 			
 			wrapperPlane = new Plane();
+			
 			scene.addChild(wrapperPlane);
 			
-			//addGround();
+			addGround();
 			AstronautLoader.Instance.loadAnimations(scene);
 			scene.addEventListener( Scene3D.UPDATE_EVENT, updateEvent );
 			stage.addEventListener(Event.ENTER_FRAME,_enterFrame);
@@ -61,8 +62,8 @@ package
 		private function addGround():void
 		{
 			plane = new Plane("Plane",3000,300);
-		//	plane.rotateZ(90);
-			//plane.rotateY(270);
+			plane.rotateZ(90);
+			plane.rotateY(270);
 			wrapperPlane.addChild(plane);
 		}
 		
@@ -78,11 +79,11 @@ package
 		public static function addObject(object3D:Pivot3D):void
 		{
 			// TODO Auto Generated method stub
-			
 			var ray:RayCollision = new RayCollision();
 			ray.addCollisionWith(wrapperPlane,false);
-			var from:Vector3D = object3D.localToGlobal( new Vector3D( 0, 100, 0 ) );
+			var from:Vector3D = object3D.localToGlobal( new Vector3D( 0, 0, 0 ) );
 			var dir:Vector3D = object3D.getDown();
+			trace(from,dir);
 			if ( ray.test( from, dir ) )
 			{
 				// Get the info of the first collision.
@@ -90,11 +91,12 @@ package
 				
 				// Set the astronaut container at the collision point.
 				object3D.setPosition( info.point.x, info.point.y, info.point.z );
-				
+				trace(info.point);
 				// Align the astronaut container to the collision normal.
 				object3D.setNormalOrientation( info.normal, 0.05 );
 			}
-			//object3D.setPosition(object3D.x,object3D.y,object3D.z+1); 
+		//	object3D.setPosition(object3D.x,object3D.y,object3D.z+1); 
+			trace(from);
 			wrapperPlane.addChild(object3D);
 		}
 	}
