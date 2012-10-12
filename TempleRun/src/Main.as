@@ -62,8 +62,8 @@ package
 		private function addGround():void
 		{
 			plane = new Plane("Plane",3000,300);
-			plane.rotateZ(90);
-			plane.rotateY(270);
+			//plane.rotateZ(90);
+			//plane.rotateY(270);
 			wrapperPlane.addChild(plane);
 		}
 		
@@ -79,9 +79,10 @@ package
 		public static function addObject(object3D:Pivot3D):void
 		{
 			// TODO Auto Generated method stub
+			object3D.setRotation(-90,0,0);
 			var ray:RayCollision = new RayCollision();
 			ray.addCollisionWith(wrapperPlane,false);
-			var from:Vector3D = object3D.localToGlobal( new Vector3D( 0, 0, 0 ) );
+			var from:Vector3D = object3D.localToGlobal( new Vector3D( 0, 100, 0 ) );
 			var dir:Vector3D = object3D.getDown();
 			trace(from,dir);
 			if ( ray.test( from, dir ) )
